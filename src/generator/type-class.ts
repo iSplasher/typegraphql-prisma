@@ -139,7 +139,19 @@ export function generateInputTypeClassFromType(
     2,
   );
 
-  const mappedFields = inputType.fields.filter(field => field.hasMappedName);
+  const omittedModelFields = _dmmfDocument.datamodel.models
+    .map(model => {
+      return model.fields
+        .filter(field => field.isOmitted.input)
+        .map(field => field.name);
+    })
+    .flat();
+
+  const inputFields = inputType.fields.filter(
+    field => !omittedModelFields.includes(field.name),
+  );
+
+  const mappedFields = inputFields.filter(field => field.name);
 
   sourceFile.addClass({
     name: inputType.typeName,
@@ -154,30 +166,30 @@ export function generateInputTypeClassFromType(
         ],
       },
     ],
-    properties: inputType.fields.map<
-      OptionalKind<PropertyDeclarationStructure>
-    >(field => {
-      return {
-        name: field.name,
-        type: field.fieldTSType,
-        hasExclamationToken: !!field.isRequired,
-        hasQuestionToken: !field.isRequired,
-        trailingTrivia: "\r\n",
-        decorators: field.hasMappedName
-          ? []
-          : [
-              {
-                name: "TypeGraphQL.Field",
-                arguments: [
-                  `_type => ${field.typeGraphQLType}`,
-                  Writers.object({
-                    nullable: `${!field.isRequired}`,
-                  }),
-                ],
-              },
-            ],
-      };
-    }),
+    properties: inputFields.map<OptionalKind<PropertyDeclarationStructure>>(
+      field => {
+        return {
+          name: field.name,
+          type: field.fieldTSType,
+          hasExclamationToken: !!field.isRequired,
+          hasQuestionToken: !field.isRequired,
+          trailingTrivia: "\r\n",
+          decorators: field.hasMappedName
+            ? []
+            : [
+                {
+                  name: "TypeGraphQL.Field",
+                  arguments: [
+                    `_type => ${field.typeGraphQLType}`,
+                    Writers.object({
+                      nullable: `${!field.isRequired}`,
+                    }),
+                  ],
+                },
+              ],
+        };
+      },
+    ),
     getAccessors: mappedFields.map<
       OptionalKind<GetAccessorDeclarationStructure>
     >(field => {

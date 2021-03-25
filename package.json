@@ -8,7 +8,7 @@
     "check:type": "tsc --noEmit",
     "check:experiments": "cd ./experiments && tsc --noEmit",
     "check:format": "prettier --check ./**/*.{js,json,ts,tsx}",
-    "test": "ts-node ./tests/helpers/setup-tests.ts && jest --watch --verbose",
+    "test": "ts-node ./tests/helpers/setup-tests.ts && jest --watch --verbose --updateSnapshot",
     "test:integration": "ts-node ./tests/helpers/setup-tests.ts && env-cmd jest --watch --verbose --config ./jest.config.integration.js",
     "test:ci": "ts-node ./tests/helpers/setup-tests.ts && jest --coverage --verbose --runInBand && jest --coverage --verbose --runInBand --config ./jest.config.integration.js",
     "format": "prettier --write ./**/*.{js,json,ts,tsx}"

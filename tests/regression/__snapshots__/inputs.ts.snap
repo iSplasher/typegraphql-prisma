@@ -31,6 +31,50 @@ export class EnumColorFilter {
     nullable: true
   })
   not?: NestedEnumColorFilter | undefined;
+
+  @TypeGraphQL.Field(_type => Color, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: \\"RED\\" | \\"GREEN\\" | \\"BLUE\\" | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [Color], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: Array<\\"RED\\" | \\"GREEN\\" | \\"BLUE\\"> | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [Color], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: Array<\\"RED\\" | \\"GREEN\\" | \\"BLUE\\"> | undefined) {
+  this.notIn = notIn;
+}
+
+    @TypeGraphQL.Field(_type => NestedEnumColorFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedEnumColorFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -65,6 +109,50 @@ export class NestedEnumColorFilter {
     nullable: true
   })
   not?: NestedEnumColorFilter | undefined;
+
+  @TypeGraphQL.Field(_type => Color, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: \\"RED\\" | \\"GREEN\\" | \\"BLUE\\" | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [Color], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: Array<\\"RED\\" | \\"GREEN\\" | \\"BLUE\\"> | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [Color], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: Array<\\"RED\\" | \\"GREEN\\" | \\"BLUE\\"> | undefined) {
+  this.notIn = notIn;
+}
+
+    @TypeGraphQL.Field(_type => NestedEnumColorFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedEnumColorFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -112,6 +200,39 @@ export class UserCreateNestedOneWithoutPostsFieldInput {
     nullable: true
   })
   connect?: UserWhereUniqueInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserCreateWithoutPostsFieldInput, {
+    nullable: true
+  })
+  get create() {
+    return this.create;
+  }
+
+  set create(create: UserCreateWithoutPostsFieldInput | undefined) {
+    this.create = create;
+  }
+
+  @TypeGraphQL.Field(_type => UserCreateOrConnectWithoutPostsFieldInput, {
+    nullable: true
+  })
+  get connectOrCreate() {
+    return this.connectOrCreate;
+  }
+
+  set connectOrCreate(connectOrCreate: UserCreateOrConnectWithoutPostsFieldInput | undefined) {
+    this.connectOrCreate = connectOrCreate;
+  }
+
+  @TypeGraphQL.Field(_type => UserWhereUniqueInput, {
+    nullable: true
+  })
+  get connect() {
+    return this.connect;
+  }
+
+  set connect(connect: UserWhereUniqueInput | undefined) {
+    this.connect = connect;
+  }
 }
 "
 `;
@@ -137,6 +258,28 @@ export class UserCreateOrConnectWithoutPostsFieldInput {
     nullable: false
   })
   create!: UserCreateWithoutPostsFieldInput;
+
+  @TypeGraphQL.Field(_type => UserWhereUniqueInput, {
+    nullable: false
+  })
+  get where() {
+    return this.where;
+  }
+
+  set where(where: UserWhereUniqueInput) {
+    this.where = where;
+  }
+
+  @TypeGraphQL.Field(_type => UserCreateWithoutPostsFieldInput, {
+    nullable: false
+  })
+  get create() {
+    return this.create;
+  }
+
+  set create(create: UserCreateWithoutPostsFieldInput) {
+    this.create = create;
+  }
 }
 "
 `;
@@ -180,6 +323,61 @@ export class UserUpdateOneRequiredWithoutPostsFieldInput {
     nullable: true
   })
   update?: UserUpdateWithoutPostsFieldInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserCreateWithoutPostsFieldInput, {
+    nullable: true
+  })
+  get create() {
+    return this.create;
+  }
+
+  set create(create: UserCreateWithoutPostsFieldInput | undefined) {
+    this.create = create;
+  }
+
+  @TypeGraphQL.Field(_type => UserCreateOrConnectWithoutPostsFieldInput, {
+    nullable: true
+  })
+  get connectOrCreate() {
+    return this.connectOrCreate;
+  }
+
+  set connectOrCreate(connectOrCreate: UserCreateOrConnectWithoutPostsFieldInput | undefined) {
+    this.connectOrCreate = connectOrCreate;
+  }
+
+  @TypeGraphQL.Field(_type => UserUpsertWithoutPostsFieldInput, {
+    nullable: true
+  })
+  get upsert() {
+    return this.upsert;
+  }
+
+  set upsert(upsert: UserUpsertWithoutPostsFieldInput | undefined) {
+    this.upsert = upsert;
+  }
+
+  @TypeGraphQL.Field(_type => UserWhereUniqueInput, {
+    nullable: true
+  })
+  get connect() {
+    return this.connect;
+  }
+
+  set connect(connect: UserWhereUniqueInput | undefined) {
+    this.connect = connect;
+  }
+
+  @TypeGraphQL.Field(_type => UserUpdateWithoutPostsFieldInput, {
+    nullable: true
+  })
+  get update() {
+    return this.update;
+  }
+
+  set update(update: UserUpdateWithoutPostsFieldInput | undefined) {
+    this.update = update;
+  }
 }
 "
 `;
@@ -255,6 +453,127 @@ export class SampleModelWhereInput {
     nullable: true
   })
   jsonField?: JsonFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [SampleModelWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: SampleModelWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [SampleModelWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: SampleModelWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [SampleModelWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: SampleModelWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get intIdField() {
+    return this.intIdField;
+  }
+
+  set intIdField(intIdField: IntFilter | undefined) {
+    this.intIdField = intIdField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get stringField() {
+    return this.stringField;
+  }
+
+  set stringField(stringField: StringFilter | undefined) {
+    this.stringField = stringField;
+  }
+
+  @TypeGraphQL.Field(_type => StringNullableFilter, {
+    nullable: true
+  })
+  get optionalStringField() {
+    return this.optionalStringField;
+  }
+
+  set optionalStringField(optionalStringField: StringNullableFilter | undefined) {
+    this.optionalStringField = optionalStringField;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get intField() {
+    return this.intField;
+  }
+
+  set intField(intField: IntFilter | undefined) {
+    this.intField = intField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => BoolFilter, {
+    nullable: true
+  })
+  get booleanField() {
+    return this.booleanField;
+  }
+
+  set booleanField(booleanField: BoolFilter | undefined) {
+    this.booleanField = booleanField;
+  }
+
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
+  })
+  get dateField() {
+    return this.dateField;
+  }
+
+  set dateField(dateField: DateTimeFilter | undefined) {
+    this.dateField = dateField;
+  }
+
+  @TypeGraphQL.Field(_type => JsonFilter, {
+    nullable: true
+  })
+  get jsonField() {
+    return this.jsonField;
+  }
+
+  set jsonField(jsonField: JsonFilter | undefined) {
+    this.jsonField = jsonField;
+  }
 }
 "
 `;
@@ -278,6 +597,28 @@ export class SampleModelWhereUniqueInput {
     nullable: true
   })
   stringField?: string | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get intIdField() {
+    return this.intIdField;
+  }
+
+  set intIdField(intIdField: number | undefined) {
+    this.intIdField = intIdField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get stringField() {
+    return this.stringField;
+  }
+
+  set stringField(stringField: string | undefined) {
+    this.stringField = stringField;
+  }
 }
 "
 `;
@@ -336,6 +677,39 @@ export class FirstModelOrderByInput {
     nullable: true
   })
   floatField?: \\"asc\\" | \\"desc\\" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -382,6 +756,72 @@ export class FirstModelScalarWhereInput {
     nullable: true
   })
   floatField?: FloatFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [FirstModelScalarWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: FirstModelScalarWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [FirstModelScalarWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: FirstModelScalarWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [FirstModelScalarWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: FirstModelScalarWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFilter | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -434,6 +874,83 @@ export class FirstModelWhereInput {
     nullable: true
   })
   secondModelsField?: SecondModelListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [FirstModelWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: FirstModelWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [FirstModelWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: FirstModelWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [FirstModelWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: FirstModelWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFilter | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => SecondModelListRelationFilter, {
+    nullable: true
+  })
+  get secondModelsField() {
+    return this.secondModelsField;
+  }
+
+  set secondModelsField(secondModelsField: SecondModelListRelationFilter | undefined) {
+    this.secondModelsField = secondModelsField;
+  }
 }
 "
 `;
@@ -457,6 +974,28 @@ export class FirstModelWhereUniqueInput {
     nullable: true
   })
   uniqueStringField?: string | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: number | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
 }
 "
 `;
@@ -531,6 +1070,39 @@ export class FirstModelOrderByInput {
     nullable: true
   })
   floatField?: \\"asc\\" | \\"desc\\" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -555,6 +1127,28 @@ export class FirstModelRelationFilter {
     nullable: true
   })
   isNot?: FirstModelWhereInput | undefined;
+
+  @TypeGraphQL.Field(_type => FirstModelWhereInput, {
+    nullable: true
+  })
+  get is() {
+    return this.is;
+  }
+
+  set is(is: FirstModelWhereInput | undefined) {
+    this.is = is;
+  }
+
+  @TypeGraphQL.Field(_type => FirstModelWhereInput, {
+    nullable: true
+  })
+  get isNot() {
+    return this.isNot;
+  }
+
+  set isNot(isNot: FirstModelWhereInput | undefined) {
+    this.isNot = isNot;
+  }
 }
 "
 `;
@@ -607,6 +1201,83 @@ export class FirstModelWhereInput {
     nullable: true
   })
   secondModelsField?: SecondModelListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [FirstModelWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: FirstModelWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [FirstModelWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: FirstModelWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [FirstModelWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: FirstModelWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFilter | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => SecondModelListRelationFilter, {
+    nullable: true
+  })
+  get secondModelsField() {
+    return this.secondModelsField;
+  }
+
+  set secondModelsField(secondModelsField: SecondModelListRelationFilter | undefined) {
+    this.secondModelsField = secondModelsField;
+  }
 }
 "
 `;
@@ -630,6 +1301,28 @@ export class FirstModelWhereUniqueInput {
     nullable: true
   })
   uniqueStringField?: string | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: number | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
 }
 "
 `;
@@ -659,6 +1352,39 @@ export class SecondModelListRelationFilter {
     nullable: true
   })
   none?: SecondModelWhereInput | undefined;
+
+  @TypeGraphQL.Field(_type => SecondModelWhereInput, {
+    nullable: true
+  })
+  get every() {
+    return this.every;
+  }
+
+  set every(every: SecondModelWhereInput | undefined) {
+    this.every = every;
+  }
+
+  @TypeGraphQL.Field(_type => SecondModelWhereInput, {
+    nullable: true
+  })
+  get some() {
+    return this.some;
+  }
+
+  set some(some: SecondModelWhereInput | undefined) {
+    this.some = some;
+  }
+
+  @TypeGraphQL.Field(_type => SecondModelWhereInput, {
+    nullable: true
+  })
+  get none() {
+    return this.none;
+  }
+
+  set none(none: SecondModelWhereInput | undefined) {
+    this.none = none;
+  }
 }
 "
 `;
@@ -693,6 +1419,50 @@ export class SecondModelOrderByInput {
     nullable: true
   })
   firstModelFieldId?: \\"asc\\" | \\"desc\\" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get firstModelFieldId() {
+    return this.firstModelFieldId;
+  }
+
+  set firstModelFieldId(firstModelFieldId: \\"asc\\" | \\"desc\\" | undefined) {
+    this.firstModelFieldId = firstModelFieldId;
+  }
 }
 "
 `;
@@ -744,6 +1514,83 @@ export class SecondModelScalarWhereInput {
     nullable: true
   })
   firstModelFieldId?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [SecondModelScalarWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: SecondModelScalarWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [SecondModelScalarWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: SecondModelScalarWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [SecondModelScalarWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: SecondModelScalarWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFilter | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get firstModelFieldId() {
+    return this.firstModelFieldId;
+  }
+
+  set firstModelFieldId(firstModelFieldId: IntFilter | undefined) {
+    this.firstModelFieldId = firstModelFieldId;
+  }
 }
 "
 `;
@@ -801,6 +1648,94 @@ export class SecondModelWhereInput {
     nullable: true
   })
   firstModelField?: FirstModelRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [SecondModelWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: SecondModelWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [SecondModelWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: SecondModelWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [SecondModelWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: SecondModelWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFilter | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get firstModelFieldId() {
+    return this.firstModelFieldId;
+  }
+
+  set firstModelFieldId(firstModelFieldId: IntFilter | undefined) {
+    this.firstModelFieldId = firstModelFieldId;
+  }
+
+  @TypeGraphQL.Field(_type => FirstModelRelationFilter, {
+    nullable: true
+  })
+  get firstModelField() {
+    return this.firstModelField;
+  }
+
+  set firstModelField(firstModelField: FirstModelRelationFilter | undefined) {
+    this.firstModelField = firstModelField;
+  }
 }
 "
 `;
@@ -824,6 +1759,28 @@ export class SecondModelWhereUniqueInput {
     nullable: true
   })
   uniqueStringField?: string | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: number | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
 }
 "
 `;
@@ -890,6 +1847,28 @@ export class BoolFilter {
     nullable: true
   })
   not?: NestedBoolFilter | undefined;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: boolean | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => NestedBoolFilter, {
+    nullable: true
+  })
+  get not() {
+    return this.not;
+  }
+
+  set not(not: NestedBoolFilter | undefined) {
+    this.not = not;
+  }
 }
 "
 `;
@@ -944,6 +1923,94 @@ export class DateTimeFilter {
     nullable: true
   })
   not?: NestedDateTimeFilter | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: Date | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [Date], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: Date[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [Date], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: Date[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: Date | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: Date | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: Date | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: Date | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedDateTimeFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedDateTimeFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -998,6 +2065,94 @@ export class FloatFilter {
     nullable: true
   })
   not?: NestedFloatFilter | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: number | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Float], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: number[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [TypeGraphQL.Float], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: number[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: number | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: number | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: number | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: number | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedFloatFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedFloatFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -1052,6 +2207,94 @@ export class IntFilter {
     nullable: true
   })
   not?: NestedIntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: number | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: number[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: number[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: number | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: number | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: number | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: number | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedIntFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedIntFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -1075,6 +2318,28 @@ export class JsonFilter {
     nullable: true
   })
   not?: Prisma.InputJsonValue | undefined;
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.JSONResolver, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: Prisma.InputJsonValue | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.JSONResolver, {
+    nullable: true
+  })
+  get not() {
+    return this.not;
+  }
+
+  set not(not: Prisma.InputJsonValue | undefined) {
+    this.not = not;
+  }
 }
 "
 `;
@@ -1098,6 +2363,28 @@ export class NestedBoolFilter {
     nullable: true
   })
   not?: NestedBoolFilter | undefined;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: boolean | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => NestedBoolFilter, {
+    nullable: true
+  })
+  get not() {
+    return this.not;
+  }
+
+  set not(not: NestedBoolFilter | undefined) {
+    this.not = not;
+  }
 }
 "
 `;
@@ -1151,6 +2438,94 @@ export class NestedDateTimeFilter {
     nullable: true
   })
   not?: NestedDateTimeFilter | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: Date | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [Date], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: Date[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [Date], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: Date[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: Date | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: Date | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: Date | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: Date | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedDateTimeFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedDateTimeFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -1204,6 +2579,94 @@ export class NestedFloatFilter {
     nullable: true
   })
   not?: NestedFloatFilter | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: number | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Float], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: number[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [TypeGraphQL.Float], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: number[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: number | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: number | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: number | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: number | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedFloatFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedFloatFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -1257,6 +2720,94 @@ export class NestedIntFilter {
     nullable: true
   })
   not?: NestedIntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: number | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: number[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: number[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: number | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: number | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: number | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: number | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedIntFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedIntFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -1325,6 +2876,127 @@ export class NestedStringNullableFilter {
     nullable: true
   })
   not?: NestedStringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: string | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: string[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [String], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: string[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: string | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: string | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: string | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: string | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get contains() {
+  return this.contains;
+}
+
+set contains(contains: string | undefined) {
+  this.contains = contains;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get startsWith() {
+  return this.startsWith;
+}
+
+set startsWith(startsWith: string | undefined) {
+  this.startsWith = startsWith;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get endsWith() {
+  return this.endsWith;
+}
+
+set endsWith(endsWith: string | undefined) {
+  this.endsWith = endsWith;
+}
+
+@TypeGraphQL.Field(_type => NestedStringNullableFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedStringNullableFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -1400,6 +3072,138 @@ export class StringFilter {
     nullable: true
   })
   not?: NestedStringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: string | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: string[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [String], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: string[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: string | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: string | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: string | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: string | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get contains() {
+  return this.contains;
+}
+
+set contains(contains: string | undefined) {
+  this.contains = contains;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get startsWith() {
+  return this.startsWith;
+}
+
+set startsWith(startsWith: string | undefined) {
+  this.startsWith = startsWith;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get endsWith() {
+  return this.endsWith;
+}
+
+set endsWith(endsWith: string | undefined) {
+  this.endsWith = endsWith;
+}
+
+@TypeGraphQL.Field(_type => QueryMode, {
+  nullable: true
+})
+get mode() {
+  return this.mode;
+}
+
+set mode(mode: \\"default\\" | \\"insensitive\\" | undefined) {
+  this.mode = mode;
+}
+
+@TypeGraphQL.Field(_type => NestedStringFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedStringFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -1475,6 +3279,138 @@ export class StringNullableFilter {
     nullable: true
   })
   not?: NestedStringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: string | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: string[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [String], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: string[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: string | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: string | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: string | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: string | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get contains() {
+  return this.contains;
+}
+
+set contains(contains: string | undefined) {
+  this.contains = contains;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get startsWith() {
+  return this.startsWith;
+}
+
+set startsWith(startsWith: string | undefined) {
+  this.startsWith = startsWith;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get endsWith() {
+  return this.endsWith;
+}
+
+set endsWith(endsWith: string | undefined) {
+  this.endsWith = endsWith;
+}
+
+@TypeGraphQL.Field(_type => QueryMode, {
+  nullable: true
+})
+get mode() {
+  return this.mode;
+}
+
+set mode(mode: \\"default\\" | \\"insensitive\\" | undefined) {
+  this.mode = mode;
+}
+
+@TypeGraphQL.Field(_type => NestedStringNullableFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedStringNullableFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -1540,6 +3476,28 @@ export class DirectorFirstNameLastNameCompoundUniqueInput {
     nullable: false
   })
   lastName!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  get firstName() {
+    return this.firstName;
+  }
+
+  set firstName(firstName: string) {
+    this.firstName = firstName;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  get lastName() {
+    return this.lastName;
+  }
+
+  set lastName(lastName: string) {
+    this.lastName = lastName;
+  }
 }
 "
 `;
@@ -1569,6 +3527,39 @@ export class DirectorOrderByInput {
     nullable: true
   })
   age?: \\"asc\\" | \\"desc\\" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get firstName() {
+    return this.firstName;
+  }
+
+  set firstName(firstName: \\"asc\\" | \\"desc\\" | undefined) {
+    this.firstName = firstName;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get lastName() {
+    return this.lastName;
+  }
+
+  set lastName(lastName: \\"asc\\" | \\"desc\\" | undefined) {
+    this.lastName = lastName;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get age() {
+    return this.age;
+  }
+
+  set age(age: \\"asc\\" | \\"desc\\" | undefined) {
+    this.age = age;
+  }
 }
 "
 `;
@@ -1620,6 +3611,83 @@ export class DirectorWhereInput {
     nullable: true
   })
   movies?: MovieListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [DirectorWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: DirectorWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [DirectorWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: DirectorWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [DirectorWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: DirectorWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get firstName() {
+    return this.firstName;
+  }
+
+  set firstName(firstName: StringFilter | undefined) {
+    this.firstName = firstName;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get lastName() {
+    return this.lastName;
+  }
+
+  set lastName(lastName: StringFilter | undefined) {
+    this.lastName = lastName;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get age() {
+    return this.age;
+  }
+
+  set age(age: IntFilter | undefined) {
+    this.age = age;
+  }
+
+  @TypeGraphQL.Field(_type => MovieListRelationFilter, {
+    nullable: true
+  })
+  get movies() {
+    return this.movies;
+  }
+
+  set movies(movies: MovieListRelationFilter | undefined) {
+    this.movies = movies;
+  }
 }
 "
 `;
@@ -1639,6 +3707,17 @@ export class DirectorWhereUniqueInput {
     nullable: true
   })
   firstName_lastName?: DirectorFirstNameLastNameCompoundUniqueInput | undefined;
+
+  @TypeGraphQL.Field(_type => DirectorFirstNameLastNameCompoundUniqueInput, {
+    nullable: true
+  })
+  get firstName_lastName() {
+    return this.firstName_lastName;
+  }
+
+  set firstName_lastName(firstName_lastName: DirectorFirstNameLastNameCompoundUniqueInput | undefined) {
+    this.firstName_lastName = firstName_lastName;
+  }
 }
 "
 `;
@@ -1711,6 +3790,39 @@ export class MovieDirectorFirstNameDirectorLastNameTitleCompoundUniqueInput {
     nullable: false
   })
   title!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  get directorFirstName() {
+    return this.directorFirstName;
+  }
+
+  set directorFirstName(directorFirstName: string) {
+    this.directorFirstName = directorFirstName;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  get directorLastName() {
+    return this.directorLastName;
+  }
+
+  set directorLastName(directorLastName: string) {
+    this.directorLastName = directorLastName;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  get title() {
+    return this.title;
+  }
+
+  set title(title: string) {
+    this.title = title;
+  }
 }
 "
 `;
@@ -1745,6 +3857,50 @@ export class MovieOrderByInput {
     nullable: true
   })
   rating?: \\"asc\\" | \\"desc\\" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get directorFirstName() {
+    return this.directorFirstName;
+  }
+
+  set directorFirstName(directorFirstName: \\"asc\\" | \\"desc\\" | undefined) {
+    this.directorFirstName = directorFirstName;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get directorLastName() {
+    return this.directorLastName;
+  }
+
+  set directorLastName(directorLastName: \\"asc\\" | \\"desc\\" | undefined) {
+    this.directorLastName = directorLastName;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get title() {
+    return this.title;
+  }
+
+  set title(title: \\"asc\\" | \\"desc\\" | undefined) {
+    this.title = title;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get rating() {
+    return this.rating;
+  }
+
+  set rating(rating: \\"asc\\" | \\"desc\\" | undefined) {
+    this.rating = rating;
+  }
 }
 "
 `;
@@ -1795,6 +3951,83 @@ export class MovieScalarWhereInput {
     nullable: true
   })
   rating?: FloatFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [MovieScalarWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: MovieScalarWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [MovieScalarWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: MovieScalarWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [MovieScalarWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: MovieScalarWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get directorFirstName() {
+    return this.directorFirstName;
+  }
+
+  set directorFirstName(directorFirstName: StringFilter | undefined) {
+    this.directorFirstName = directorFirstName;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get directorLastName() {
+    return this.directorLastName;
+  }
+
+  set directorLastName(directorLastName: StringFilter | undefined) {
+    this.directorLastName = directorLastName;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get title() {
+    return this.title;
+  }
+
+  set title(title: StringFilter | undefined) {
+    this.title = title;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get rating() {
+    return this.rating;
+  }
+
+  set rating(rating: FloatFilter | undefined) {
+    this.rating = rating;
+  }
 }
 "
 `;
@@ -1851,6 +4084,94 @@ export class MovieWhereInput {
     nullable: true
   })
   rating?: FloatFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [MovieWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: MovieWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [MovieWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: MovieWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [MovieWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: MovieWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get directorFirstName() {
+    return this.directorFirstName;
+  }
+
+  set directorFirstName(directorFirstName: StringFilter | undefined) {
+    this.directorFirstName = directorFirstName;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get directorLastName() {
+    return this.directorLastName;
+  }
+
+  set directorLastName(directorLastName: StringFilter | undefined) {
+    this.directorLastName = directorLastName;
+  }
+
+  @TypeGraphQL.Field(_type => DirectorRelationFilter, {
+    nullable: true
+  })
+  get director() {
+    return this.director;
+  }
+
+  set director(director: DirectorRelationFilter | undefined) {
+    this.director = director;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get title() {
+    return this.title;
+  }
+
+  set title(title: StringFilter | undefined) {
+    this.title = title;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get rating() {
+    return this.rating;
+  }
+
+  set rating(rating: FloatFilter | undefined) {
+    this.rating = rating;
+  }
 }
 "
 `;
@@ -1870,6 +4191,17 @@ export class MovieWhereUniqueInput {
     nullable: true
   })
   directorFirstName_directorLastName_title?: MovieDirectorFirstNameDirectorLastNameTitleCompoundUniqueInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieDirectorFirstNameDirectorLastNameTitleCompoundUniqueInput, {
+    nullable: true
+  })
+  get directorFirstName_directorLastName_title() {
+    return this.directorFirstName_directorLastName_title;
+  }
+
+  set directorFirstName_directorLastName_title(directorFirstName_directorLastName_title: MovieDirectorFirstNameDirectorLastNameTitleCompoundUniqueInput | undefined) {
+    this.directorFirstName_directorLastName_title = directorFirstName_directorLastName_title;
+  }
 }
 "
 `;
@@ -1942,6 +4274,39 @@ export class NativeTypeModelCreateInput {
     nullable: true
   })
   decimal?: Prisma.Decimal | undefined;
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.BigIntResolver, {
+    nullable: true
+  })
+  get bigInt() {
+    return this.bigInt;
+  }
+
+  set bigInt(bigInt: bigint | undefined) {
+    this.bigInt = bigInt;
+  }
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.ByteResolver, {
+    nullable: true
+  })
+  get byteA() {
+    return this.byteA;
+  }
+
+  set byteA(byteA: Buffer | undefined) {
+    this.byteA = byteA;
+  }
+
+  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+    nullable: true
+  })
+  get decimal() {
+    return this.decimal;
+  }
+
+  set decimal(decimal: Prisma.Decimal | undefined) {
+    this.decimal = decimal;
+  }
 }
 "
 `;
@@ -1976,6 +4341,50 @@ export class NativeTypeModelOrderByInput {
     nullable: true
   })
   decimal?: \\"asc\\" | \\"desc\\" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get id() {
+    return this.id;
+  }
+
+  set id(id: \\"asc\\" | \\"desc\\" | undefined) {
+    this.id = id;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get bigInt() {
+    return this.bigInt;
+  }
+
+  set bigInt(bigInt: \\"asc\\" | \\"desc\\" | undefined) {
+    this.bigInt = bigInt;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get byteA() {
+    return this.byteA;
+  }
+
+  set byteA(byteA: \\"asc\\" | \\"desc\\" | undefined) {
+    this.byteA = byteA;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get decimal() {
+    return this.decimal;
+  }
+
+  set decimal(decimal: \\"asc\\" | \\"desc\\" | undefined) {
+    this.decimal = decimal;
+  }
 }
 "
 `;
@@ -2007,6 +4416,39 @@ export class NativeTypeModelUpdateInput {
     nullable: true
   })
   decimal?: NullableDecimalFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableBigIntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get bigInt() {
+    return this.bigInt;
+  }
+
+  set bigInt(bigInt: NullableBigIntFieldUpdateOperationsInput | undefined) {
+    this.bigInt = bigInt;
+  }
+
+  @TypeGraphQL.Field(_type => NullableBytesFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get byteA() {
+    return this.byteA;
+  }
+
+  set byteA(byteA: NullableBytesFieldUpdateOperationsInput | undefined) {
+    this.byteA = byteA;
+  }
+
+  @TypeGraphQL.Field(_type => NullableDecimalFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get decimal() {
+    return this.decimal;
+  }
+
+  set decimal(decimal: NullableDecimalFieldUpdateOperationsInput | undefined) {
+    this.decimal = decimal;
+  }
 }
 "
 `;
@@ -2038,6 +4480,39 @@ export class NativeTypeModelUpdateManyMutationInput {
     nullable: true
   })
   decimal?: NullableDecimalFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableBigIntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get bigInt() {
+    return this.bigInt;
+  }
+
+  set bigInt(bigInt: NullableBigIntFieldUpdateOperationsInput | undefined) {
+    this.bigInt = bigInt;
+  }
+
+  @TypeGraphQL.Field(_type => NullableBytesFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get byteA() {
+    return this.byteA;
+  }
+
+  set byteA(byteA: NullableBytesFieldUpdateOperationsInput | undefined) {
+    this.byteA = byteA;
+  }
+
+  @TypeGraphQL.Field(_type => NullableDecimalFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get decimal() {
+    return this.decimal;
+  }
+
+  set decimal(decimal: NullableDecimalFieldUpdateOperationsInput | undefined) {
+    this.decimal = decimal;
+  }
 }
 "
 `;
@@ -2090,6 +4565,83 @@ export class NativeTypeModelWhereInput {
     nullable: true
   })
   decimal?: DecimalNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [NativeTypeModelWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: NativeTypeModelWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [NativeTypeModelWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: NativeTypeModelWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [NativeTypeModelWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: NativeTypeModelWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get id() {
+    return this.id;
+  }
+
+  set id(id: IntFilter | undefined) {
+    this.id = id;
+  }
+
+  @TypeGraphQL.Field(_type => BigIntNullableFilter, {
+    nullable: true
+  })
+  get bigInt() {
+    return this.bigInt;
+  }
+
+  set bigInt(bigInt: BigIntNullableFilter | undefined) {
+    this.bigInt = bigInt;
+  }
+
+  @TypeGraphQL.Field(_type => BytesNullableFilter, {
+    nullable: true
+  })
+  get byteA() {
+    return this.byteA;
+  }
+
+  set byteA(byteA: BytesNullableFilter | undefined) {
+    this.byteA = byteA;
+  }
+
+  @TypeGraphQL.Field(_type => DecimalNullableFilter, {
+    nullable: true
+  })
+  get decimal() {
+    return this.decimal;
+  }
+
+  set decimal(decimal: DecimalNullableFilter | undefined) {
+    this.decimal = decimal;
+  }
 }
 "
 `;
@@ -2108,6 +4660,17 @@ export class NativeTypeModelWhereUniqueInput {
     nullable: true
   })
   id?: number | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get id() {
+    return this.id;
+  }
+
+  set id(id: number | undefined) {
+    this.id = id;
+  }
 }
 "
 `;
@@ -2134,6 +4697,186 @@ export { NullableDecimalFieldUpdateOperationsInput } from \\"./NullableDecimalFi
 "
 `;
 
+exports[`inputs should properly generate input type classes for omitted fields: SampleModelWhereInput 1`] = `
+"import * as TypeGraphQL from \\"type-graphql\\";
+import * as GraphQLScalars from \\"graphql-scalars\\";
+import { Prisma } from \\"../../../../helpers/prisma-client-mock\\";
+import { DecimalJSScalar } from \\"../../scalars\\";
+import { BoolFilter } from \\"../inputs/BoolFilter\\";
+import { FloatFilter } from \\"../inputs/FloatFilter\\";
+import { IntFilter } from \\"../inputs/IntFilter\\";
+import { StringFilter } from \\"../inputs/StringFilter\\";
+
+@TypeGraphQL.InputType({
+  isAbstract: true
+})
+export class SampleModelWhereInput {
+  @TypeGraphQL.Field(_type => [SampleModelWhereInput], {
+    nullable: true
+  })
+  AND?: SampleModelWhereInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [SampleModelWhereInput], {
+    nullable: true
+  })
+  OR?: SampleModelWhereInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [SampleModelWhereInput], {
+    nullable: true
+  })
+  NOT?: SampleModelWhereInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  intIdField?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  stringField?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  floatField?: FloatFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [SampleModelWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: SampleModelWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [SampleModelWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: SampleModelWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [SampleModelWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: SampleModelWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get intIdField() {
+    return this.intIdField;
+  }
+
+  set intIdField(intIdField: IntFilter | undefined) {
+    this.intIdField = intIdField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get stringField() {
+    return this.stringField;
+  }
+
+  set stringField(stringField: StringFilter | undefined) {
+    this.stringField = stringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
+}
+"
+`;
+
+exports[`inputs should properly generate input type classes for omitted fields: SampleModelWhereUniqueInput 1`] = `
+"import * as TypeGraphQL from \\"type-graphql\\";
+import * as GraphQLScalars from \\"graphql-scalars\\";
+import { Prisma } from \\"../../../../helpers/prisma-client-mock\\";
+import { DecimalJSScalar } from \\"../../scalars\\";
+
+@TypeGraphQL.InputType({
+  isAbstract: true
+})
+export class SampleModelWhereUniqueInput {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  intIdField?: number | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  stringField?: string | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get intIdField() {
+    return this.intIdField;
+  }
+
+  set intIdField(intIdField: number | undefined) {
+    this.intIdField = intIdField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get stringField() {
+    return this.stringField;
+  }
+
+  set stringField(stringField: string | undefined) {
+    this.stringField = stringField;
+  }
+}
+"
+`;
+
+exports[`inputs should properly generate input type classes for omitted fields: index 1`] = `
+"export { BoolFieldUpdateOperationsInput } from \\"./BoolFieldUpdateOperationsInput\\";
+export { BoolFilter } from \\"./BoolFilter\\";
+export { FloatFieldUpdateOperationsInput } from \\"./FloatFieldUpdateOperationsInput\\";
+export { FloatFilter } from \\"./FloatFilter\\";
+export { IntFieldUpdateOperationsInput } from \\"./IntFieldUpdateOperationsInput\\";
+export { IntFilter } from \\"./IntFilter\\";
+export { NestedBoolFilter } from \\"./NestedBoolFilter\\";
+export { NestedFloatFilter } from \\"./NestedFloatFilter\\";
+export { NestedIntFilter } from \\"./NestedIntFilter\\";
+export { NestedStringFilter } from \\"./NestedStringFilter\\";
+export { SampleModelCreateInput } from \\"./SampleModelCreateInput\\";
+export { SampleModelOrderByInput } from \\"./SampleModelOrderByInput\\";
+export { SampleModelUpdateInput } from \\"./SampleModelUpdateInput\\";
+export { SampleModelUpdateManyMutationInput } from \\"./SampleModelUpdateManyMutationInput\\";
+export { SampleModelWhereInput } from \\"./SampleModelWhereInput\\";
+export { SampleModelWhereUniqueInput } from \\"./SampleModelWhereUniqueInput\\";
+export { StringFieldUpdateOperationsInput } from \\"./StringFieldUpdateOperationsInput\\";
+export { StringFilter } from \\"./StringFilter\\";
+"
+`;
+
 exports[`inputs should properly generate input type classes for updating scalar fields: BoolFieldUpdateOperationsInput 1`] = `
 "import * as TypeGraphQL from \\"type-graphql\\";
 import * as GraphQLScalars from \\"graphql-scalars\\";
@@ -2148,6 +4891,17 @@ export class BoolFieldUpdateOperationsInput {
     nullable: true
   })
   set?: boolean | undefined;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  get set() {
+    return this.set;
+  }
+
+  set set(set: boolean | undefined) {
+    this.set = set;
+  }
 }
 "
 `;
@@ -2166,6 +4920,17 @@ export class DateTimeFieldUpdateOperationsInput {
     nullable: true
   })
   set?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  get set() {
+    return this.set;
+  }
+
+  set set(set: Date | undefined) {
+    this.set = set;
+  }
 }
 "
 `;
@@ -2185,6 +4950,17 @@ export class EnumColorFieldUpdateOperationsInput {
     nullable: true
   })
   set?: \\"RED\\" | \\"GREEN\\" | \\"BLUE\\" | undefined;
+
+  @TypeGraphQL.Field(_type => Color, {
+    nullable: true
+  })
+  get set() {
+    return this.set;
+  }
+
+  set set(set: \\"RED\\" | \\"GREEN\\" | \\"BLUE\\" | undefined) {
+    this.set = set;
+  }
 }
 "
 `;
@@ -2223,6 +4999,61 @@ export class FloatFieldUpdateOperationsInput {
     nullable: true
   })
   divide?: number | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  get set() {
+    return this.set;
+  }
+
+  set set(set: number | undefined) {
+    this.set = set;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  get increment() {
+    return this.increment;
+  }
+
+  set increment(increment: number | undefined) {
+    this.increment = increment;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  get decrement() {
+    return this.decrement;
+  }
+
+  set decrement(decrement: number | undefined) {
+    this.decrement = decrement;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  get multiply() {
+    return this.multiply;
+  }
+
+  set multiply(multiply: number | undefined) {
+    this.multiply = multiply;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  get divide() {
+    return this.divide;
+  }
+
+  set divide(divide: number | undefined) {
+    this.divide = divide;
+  }
 }
 "
 `;
@@ -2261,6 +5092,61 @@ export class IntFieldUpdateOperationsInput {
     nullable: true
   })
   divide?: number | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get set() {
+    return this.set;
+  }
+
+  set set(set: number | undefined) {
+    this.set = set;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get increment() {
+    return this.increment;
+  }
+
+  set increment(increment: number | undefined) {
+    this.increment = increment;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get decrement() {
+    return this.decrement;
+  }
+
+  set decrement(decrement: number | undefined) {
+    this.decrement = decrement;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get multiply() {
+    return this.multiply;
+  }
+
+  set multiply(multiply: number | undefined) {
+    this.multiply = multiply;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get divide() {
+    return this.divide;
+  }
+
+  set divide(divide: number | undefined) {
+    this.divide = divide;
+  }
 }
 "
 `;
@@ -2356,6 +5242,160 @@ export class SampleModelUpdateInput {
     nullable: true
   })
   optionalEnumField?: NullableEnumColorFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get stringField() {
+    return this.stringField;
+  }
+
+  set stringField(stringField: StringFieldUpdateOperationsInput | undefined) {
+    this.stringField = stringField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalStringField() {
+    return this.optionalStringField;
+  }
+
+  set optionalStringField(optionalStringField: NullableStringFieldUpdateOperationsInput | undefined) {
+    this.optionalStringField = optionalStringField;
+  }
+
+  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get intField() {
+    return this.intField;
+  }
+
+  set intField(intField: IntFieldUpdateOperationsInput | undefined) {
+    this.intField = intField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableIntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalIntField() {
+    return this.optionalIntField;
+  }
+
+  set optionalIntField(optionalIntField: NullableIntFieldUpdateOperationsInput | undefined) {
+    this.optionalIntField = optionalIntField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFieldUpdateOperationsInput | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableFloatFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalFloatField() {
+    return this.optionalFloatField;
+  }
+
+  set optionalFloatField(optionalFloatField: NullableFloatFieldUpdateOperationsInput | undefined) {
+    this.optionalFloatField = optionalFloatField;
+  }
+
+  @TypeGraphQL.Field(_type => BoolFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get booleanField() {
+    return this.booleanField;
+  }
+
+  set booleanField(booleanField: BoolFieldUpdateOperationsInput | undefined) {
+    this.booleanField = booleanField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableBoolFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalBooleanField() {
+    return this.optionalBooleanField;
+  }
+
+  set optionalBooleanField(optionalBooleanField: NullableBoolFieldUpdateOperationsInput | undefined) {
+    this.optionalBooleanField = optionalBooleanField;
+  }
+
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get dateField() {
+    return this.dateField;
+  }
+
+  set dateField(dateField: DateTimeFieldUpdateOperationsInput | undefined) {
+    this.dateField = dateField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalDateField() {
+    return this.optionalDateField;
+  }
+
+  set optionalDateField(optionalDateField: NullableDateTimeFieldUpdateOperationsInput | undefined) {
+    this.optionalDateField = optionalDateField;
+  }
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.JSONResolver, {
+    nullable: true
+  })
+  get jsonField() {
+    return this.jsonField;
+  }
+
+  set jsonField(jsonField: Prisma.InputJsonValue | undefined) {
+    this.jsonField = jsonField;
+  }
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.JSONResolver, {
+    nullable: true
+  })
+  get optionalJsonField() {
+    return this.optionalJsonField;
+  }
+
+  set optionalJsonField(optionalJsonField: Prisma.InputJsonValue | undefined) {
+    this.optionalJsonField = optionalJsonField;
+  }
+
+  @TypeGraphQL.Field(_type => EnumColorFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get enumField() {
+    return this.enumField;
+  }
+
+  set enumField(enumField: EnumColorFieldUpdateOperationsInput | undefined) {
+    this.enumField = enumField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableEnumColorFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalEnumField() {
+    return this.optionalEnumField;
+  }
+
+  set optionalEnumField(optionalEnumField: NullableEnumColorFieldUpdateOperationsInput | undefined) {
+    this.optionalEnumField = optionalEnumField;
+  }
 }
 "
 `;
@@ -2451,6 +5491,160 @@ export class SampleModelUpdateManyMutationInput {
     nullable: true
   })
   optionalEnumField?: NullableEnumColorFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get stringField() {
+    return this.stringField;
+  }
+
+  set stringField(stringField: StringFieldUpdateOperationsInput | undefined) {
+    this.stringField = stringField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalStringField() {
+    return this.optionalStringField;
+  }
+
+  set optionalStringField(optionalStringField: NullableStringFieldUpdateOperationsInput | undefined) {
+    this.optionalStringField = optionalStringField;
+  }
+
+  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get intField() {
+    return this.intField;
+  }
+
+  set intField(intField: IntFieldUpdateOperationsInput | undefined) {
+    this.intField = intField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableIntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalIntField() {
+    return this.optionalIntField;
+  }
+
+  set optionalIntField(optionalIntField: NullableIntFieldUpdateOperationsInput | undefined) {
+    this.optionalIntField = optionalIntField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFieldUpdateOperationsInput | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableFloatFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalFloatField() {
+    return this.optionalFloatField;
+  }
+
+  set optionalFloatField(optionalFloatField: NullableFloatFieldUpdateOperationsInput | undefined) {
+    this.optionalFloatField = optionalFloatField;
+  }
+
+  @TypeGraphQL.Field(_type => BoolFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get booleanField() {
+    return this.booleanField;
+  }
+
+  set booleanField(booleanField: BoolFieldUpdateOperationsInput | undefined) {
+    this.booleanField = booleanField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableBoolFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalBooleanField() {
+    return this.optionalBooleanField;
+  }
+
+  set optionalBooleanField(optionalBooleanField: NullableBoolFieldUpdateOperationsInput | undefined) {
+    this.optionalBooleanField = optionalBooleanField;
+  }
+
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get dateField() {
+    return this.dateField;
+  }
+
+  set dateField(dateField: DateTimeFieldUpdateOperationsInput | undefined) {
+    this.dateField = dateField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalDateField() {
+    return this.optionalDateField;
+  }
+
+  set optionalDateField(optionalDateField: NullableDateTimeFieldUpdateOperationsInput | undefined) {
+    this.optionalDateField = optionalDateField;
+  }
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.JSONResolver, {
+    nullable: true
+  })
+  get jsonField() {
+    return this.jsonField;
+  }
+
+  set jsonField(jsonField: Prisma.InputJsonValue | undefined) {
+    this.jsonField = jsonField;
+  }
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.JSONResolver, {
+    nullable: true
+  })
+  get optionalJsonField() {
+    return this.optionalJsonField;
+  }
+
+  set optionalJsonField(optionalJsonField: Prisma.InputJsonValue | undefined) {
+    this.optionalJsonField = optionalJsonField;
+  }
+
+  @TypeGraphQL.Field(_type => EnumColorFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get enumField() {
+    return this.enumField;
+  }
+
+  set enumField(enumField: EnumColorFieldUpdateOperationsInput | undefined) {
+    this.enumField = enumField;
+  }
+
+  @TypeGraphQL.Field(_type => NullableEnumColorFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get optionalEnumField() {
+    return this.optionalEnumField;
+  }
+
+  set optionalEnumField(optionalEnumField: NullableEnumColorFieldUpdateOperationsInput | undefined) {
+    this.optionalEnumField = optionalEnumField;
+  }
 }
 "
 `;
@@ -2469,6 +5663,17 @@ export class StringFieldUpdateOperationsInput {
     nullable: true
   })
   set?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get set() {
+    return this.set;
+  }
+
+  set set(set: string | undefined) {
+    this.set = set;
+  }
 }
 "
 `;
@@ -2571,6 +5776,94 @@ export class BigIntNullableFilter {
     nullable: true
   })
   not?: NestedBigIntNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.BigIntResolver, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: bigint | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [GraphQLScalars.BigIntResolver], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: bigint[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [GraphQLScalars.BigIntResolver], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: bigint[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => GraphQLScalars.BigIntResolver, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: bigint | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => GraphQLScalars.BigIntResolver, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: bigint | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => GraphQLScalars.BigIntResolver, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: bigint | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => GraphQLScalars.BigIntResolver, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: bigint | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedBigIntNullableFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedBigIntNullableFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -2595,6 +5888,28 @@ export class BytesNullableFilter {
     nullable: true
   })
   not?: NestedBytesNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.ByteResolver, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: Buffer | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => NestedBytesNullableFilter, {
+    nullable: true
+  })
+  get not() {
+    return this.not;
+  }
+
+  set not(not: NestedBytesNullableFilter | undefined) {
+    this.not = not;
+  }
 }
 "
 `;
@@ -2649,6 +5964,94 @@ export class DecimalNullableFilter {
     nullable: true
   })
   not?: NestedDecimalNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: Prisma.Decimal | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [DecimalJSScalar], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: Prisma.Decimal[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [DecimalJSScalar], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: Prisma.Decimal[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => DecimalJSScalar, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: Prisma.Decimal | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => DecimalJSScalar, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: Prisma.Decimal | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => DecimalJSScalar, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: Prisma.Decimal | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => DecimalJSScalar, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: Prisma.Decimal | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedDecimalNullableFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedDecimalNullableFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -2672,6 +6075,28 @@ export class NestedBytesNullableFilter {
     nullable: true
   })
   not?: NestedBytesNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.ByteResolver, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: Buffer | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => NestedBytesNullableFilter, {
+    nullable: true
+  })
+  get not() {
+    return this.not;
+  }
+
+  set not(not: NestedBytesNullableFilter | undefined) {
+    this.not = not;
+  }
 }
 "
 `;
@@ -2725,6 +6150,94 @@ export class NestedDecimalNullableFilter {
     nullable: true
   })
   not?: NestedDecimalNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: Prisma.Decimal | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [DecimalJSScalar], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: Prisma.Decimal[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [DecimalJSScalar], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: Prisma.Decimal[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => DecimalJSScalar, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: Prisma.Decimal | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => DecimalJSScalar, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: Prisma.Decimal | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => DecimalJSScalar, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: Prisma.Decimal | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => DecimalJSScalar, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: Prisma.Decimal | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedDecimalNullableFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedDecimalNullableFilter | undefined) {
+  this.not = not;
+}
 }
 "
 `;
@@ -2763,6 +6276,61 @@ export class NullableBigIntFieldUpdateOperationsInput {
     nullable: true
   })
   divide?: bigint | undefined;
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.BigIntResolver, {
+    nullable: true
+  })
+  get set() {
+    return this.set;
+  }
+
+  set set(set: bigint | undefined) {
+    this.set = set;
+  }
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.BigIntResolver, {
+    nullable: true
+  })
+  get increment() {
+    return this.increment;
+  }
+
+  set increment(increment: bigint | undefined) {
+    this.increment = increment;
+  }
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.BigIntResolver, {
+    nullable: true
+  })
+  get decrement() {
+    return this.decrement;
+  }
+
+  set decrement(decrement: bigint | undefined) {
+    this.decrement = decrement;
+  }
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.BigIntResolver, {
+    nullable: true
+  })
+  get multiply() {
+    return this.multiply;
+  }
+
+  set multiply(multiply: bigint | undefined) {
+    this.multiply = multiply;
+  }
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.BigIntResolver, {
+    nullable: true
+  })
+  get divide() {
+    return this.divide;
+  }
+
+  set divide(divide: bigint | undefined) {
+    this.divide = divide;
+  }
 }
 "
 `;
@@ -2781,6 +6349,17 @@ export class NullableBytesFieldUpdateOperationsInput {
     nullable: true
   })
   set?: Buffer | undefined;
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.ByteResolver, {
+    nullable: true
+  })
+  get set() {
+    return this.set;
+  }
+
+  set set(set: Buffer | undefined) {
+    this.set = set;
+  }
 }
 "
 `;
@@ -2819,6 +6398,61 @@ export class NullableDecimalFieldUpdateOperationsInput {
     nullable: true
   })
   divide?: Prisma.Decimal | undefined;
+
+  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+    nullable: true
+  })
+  get set() {
+    return this.set;
+  }
+
+  set set(set: Prisma.Decimal | undefined) {
+    this.set = set;
+  }
+
+  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+    nullable: true
+  })
+  get increment() {
+    return this.increment;
+  }
+
+  set increment(increment: Prisma.Decimal | undefined) {
+    this.increment = increment;
+  }
+
+  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+    nullable: true
+  })
+  get decrement() {
+    return this.decrement;
+  }
+
+  set decrement(decrement: Prisma.Decimal | undefined) {
+    this.decrement = decrement;
+  }
+
+  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+    nullable: true
+  })
+  get multiply() {
+    return this.multiply;
+  }
+
+  set multiply(multiply: Prisma.Decimal | undefined) {
+    this.multiply = multiply;
+  }
+
+  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+    nullable: true
+  })
+  get divide() {
+    return this.divide;
+  }
+
+  set divide(divide: Prisma.Decimal | undefined) {
+    this.divide = divide;
+  }
 }
 "
 `;
@@ -2869,6 +6503,39 @@ export class FirstModelCreateManyInput {
     nullable: false
   })
   floatField!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: number | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: false
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: number) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -2897,6 +6564,39 @@ export class SecondModelCreateManyFirstModelFieldInput {
     nullable: false
   })
   floatField!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: number | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: false
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: number) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -2921,6 +6621,28 @@ export class SecondModelCreateManyFirstModelFieldInputEnvelope {
     nullable: true
   })
   skipDuplicates?: boolean | undefined;
+
+  @TypeGraphQL.Field(_type => [SecondModelCreateManyFirstModelFieldInput], {
+    nullable: false
+  })
+  get data() {
+    return this.data;
+  }
+
+  set data(data: SecondModelCreateManyFirstModelFieldInput[]) {
+    this.data = data;
+  }
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  get skipDuplicates() {
+    return this.skipDuplicates;
+  }
+
+  set skipDuplicates(skipDuplicates: boolean | undefined) {
+    this.skipDuplicates = skipDuplicates;
+  }
 }
 "
 `;
@@ -2954,6 +6676,50 @@ export class SecondModelCreateManyInput {
     nullable: false
   })
   firstModelFieldId!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: number | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: false
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: number) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  get firstModelFieldId() {
+    return this.firstModelFieldId;
+  }
+
+  set firstModelFieldId(firstModelFieldId: number) {
+    this.firstModelFieldId = firstModelFieldId;
+  }
 }
 "
 `;
@@ -3035,6 +6801,50 @@ export class FirstModelOrderByWithRelationInput {
     nullable: true
   })
   secondModelsField?: SecondModelOrderByAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => SecondModelOrderByAggregateInput, {
+    nullable: true
+  })
+  get secondModelsField() {
+    return this.secondModelsField;
+  }
+
+  set secondModelsField(secondModelsField: SecondModelOrderByAggregateInput | undefined) {
+    this.secondModelsField = secondModelsField;
+  }
 }
 "
 `;
@@ -3054,6 +6864,17 @@ export class SecondModelOrderByAggregateInput {
     nullable: false
   })
   count!: \\"asc\\" | \\"desc\\";
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: false
+  })
+  get count() {
+    return this.count;
+  }
+
+  set count(count: \\"asc\\" | \\"desc\\") {
+    this.count = count;
+  }
 }
 "
 `;
@@ -3136,6 +6957,50 @@ export class FirstModelOrderByWithRelationInput {
     nullable: true
   })
   secondModelsField?: SecondModelOrderByAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => SecondModelOrderByAggregateInput, {
+    nullable: true
+  })
+  get secondModelsField() {
+    return this.secondModelsField;
+  }
+
+  set secondModelsField(secondModelsField: SecondModelOrderByAggregateInput | undefined) {
+    this.secondModelsField = secondModelsField;
+  }
 }
 "
 `;
@@ -3155,6 +7020,17 @@ export class SecondModelOrderByAggregateInput {
     nullable: false
   })
   count!: \\"asc\\" | \\"desc\\";
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: false
+  })
+  get count() {
+    return this.count;
+  }
+
+  set count(count: \\"asc\\" | \\"desc\\") {
+    this.count = count;
+  }
 }
 "
 `;
@@ -3195,6 +7071,61 @@ export class SecondModelOrderByWithRelationInput {
     nullable: true
   })
   firstModelField?: FirstModelOrderByWithRelationInput | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get firstModelFieldId() {
+    return this.firstModelFieldId;
+  }
+
+  set firstModelFieldId(firstModelFieldId: \\"asc\\" | \\"desc\\" | undefined) {
+    this.firstModelFieldId = firstModelFieldId;
+  }
+
+  @TypeGraphQL.Field(_type => FirstModelOrderByWithRelationInput, {
+    nullable: true
+  })
+  get firstModelField() {
+    return this.firstModelField;
+  }
+
+  set firstModelField(firstModelField: FirstModelOrderByWithRelationInput | undefined) {
+    this.firstModelField = firstModelField;
+  }
 }
 "
 `;
@@ -3263,6 +7194,17 @@ export class SampleOrderByInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   get mappedFieldName() {
     return this.modelFieldName;
   }
@@ -3307,6 +7249,50 @@ export class SampleWhereInput {
   idField?: IntFilter | undefined;
 
   modelFieldName?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [SampleWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: SampleWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [SampleWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: SampleWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [SampleWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: SampleWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
 
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
@@ -3363,6 +7349,39 @@ export class RenamedFirstModelOrderByInput {
     nullable: true
   })
   floatField?: \\"asc\\" | \\"desc\\" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -3409,6 +7428,72 @@ export class RenamedFirstModelScalarWhereInput {
     nullable: true
   })
   floatField?: FloatFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [RenamedFirstModelScalarWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: RenamedFirstModelScalarWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [RenamedFirstModelScalarWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: RenamedFirstModelScalarWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [RenamedFirstModelScalarWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: RenamedFirstModelScalarWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFilter | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -3461,6 +7546,83 @@ export class RenamedFirstModelWhereInput {
     nullable: true
   })
   secondModelsField?: RenamedSecondModelListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [RenamedFirstModelWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: RenamedFirstModelWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [RenamedFirstModelWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: RenamedFirstModelWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [RenamedFirstModelWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: RenamedFirstModelWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFilter | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => RenamedSecondModelListRelationFilter, {
+    nullable: true
+  })
+  get secondModelsField() {
+    return this.secondModelsField;
+  }
+
+  set secondModelsField(secondModelsField: RenamedSecondModelListRelationFilter | undefined) {
+    this.secondModelsField = secondModelsField;
+  }
 }
 "
 `;
@@ -3484,6 +7646,28 @@ export class RenamedFirstModelWhereUniqueInput {
     nullable: true
   })
   uniqueStringField?: string | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: number | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
 }
 "
 `;
@@ -3558,6 +7742,39 @@ export class RenamedFirstModelOrderByInput {
     nullable: true
   })
   floatField?: \\"asc\\" | \\"desc\\" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -3582,6 +7799,28 @@ export class RenamedFirstModelRelationFilter {
     nullable: true
   })
   isNot?: RenamedFirstModelWhereInput | undefined;
+
+  @TypeGraphQL.Field(_type => RenamedFirstModelWhereInput, {
+    nullable: true
+  })
+  get is() {
+    return this.is;
+  }
+
+  set is(is: RenamedFirstModelWhereInput | undefined) {
+    this.is = is;
+  }
+
+  @TypeGraphQL.Field(_type => RenamedFirstModelWhereInput, {
+    nullable: true
+  })
+  get isNot() {
+    return this.isNot;
+  }
+
+  set isNot(isNot: RenamedFirstModelWhereInput | undefined) {
+    this.isNot = isNot;
+  }
 }
 "
 `;
@@ -3634,6 +7873,83 @@ export class RenamedFirstModelWhereInput {
     nullable: true
   })
   secondModelsField?: RenamedSecondModelListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [RenamedFirstModelWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: RenamedFirstModelWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [RenamedFirstModelWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: RenamedFirstModelWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [RenamedFirstModelWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: RenamedFirstModelWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFilter | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => RenamedSecondModelListRelationFilter, {
+    nullable: true
+  })
+  get secondModelsField() {
+    return this.secondModelsField;
+  }
+
+  set secondModelsField(secondModelsField: RenamedSecondModelListRelationFilter | undefined) {
+    this.secondModelsField = secondModelsField;
+  }
 }
 "
 `;
@@ -3657,6 +7973,28 @@ export class RenamedFirstModelWhereUniqueInput {
     nullable: true
   })
   uniqueStringField?: string | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: number | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
 }
 "
 `;
@@ -3686,6 +8024,39 @@ export class RenamedSecondModelListRelationFilter {
     nullable: true
   })
   none?: RenamedSecondModelWhereInput | undefined;
+
+  @TypeGraphQL.Field(_type => RenamedSecondModelWhereInput, {
+    nullable: true
+  })
+  get every() {
+    return this.every;
+  }
+
+  set every(every: RenamedSecondModelWhereInput | undefined) {
+    this.every = every;
+  }
+
+  @TypeGraphQL.Field(_type => RenamedSecondModelWhereInput, {
+    nullable: true
+  })
+  get some() {
+    return this.some;
+  }
+
+  set some(some: RenamedSecondModelWhereInput | undefined) {
+    this.some = some;
+  }
+
+  @TypeGraphQL.Field(_type => RenamedSecondModelWhereInput, {
+    nullable: true
+  })
+  get none() {
+    return this.none;
+  }
+
+  set none(none: RenamedSecondModelWhereInput | undefined) {
+    this.none = none;
+  }
 }
 "
 `;
@@ -3720,6 +8091,50 @@ export class RenamedSecondModelOrderByInput {
     nullable: true
   })
   firstModelFieldId?: \\"asc\\" | \\"desc\\" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get firstModelFieldId() {
+    return this.firstModelFieldId;
+  }
+
+  set firstModelFieldId(firstModelFieldId: \\"asc\\" | \\"desc\\" | undefined) {
+    this.firstModelFieldId = firstModelFieldId;
+  }
 }
 "
 `;
@@ -3771,6 +8186,83 @@ export class RenamedSecondModelScalarWhereInput {
     nullable: true
   })
   firstModelFieldId?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [RenamedSecondModelScalarWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: RenamedSecondModelScalarWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [RenamedSecondModelScalarWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: RenamedSecondModelScalarWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [RenamedSecondModelScalarWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: RenamedSecondModelScalarWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFilter | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get firstModelFieldId() {
+    return this.firstModelFieldId;
+  }
+
+  set firstModelFieldId(firstModelFieldId: IntFilter | undefined) {
+    this.firstModelFieldId = firstModelFieldId;
+  }
 }
 "
 `;
@@ -3828,6 +8320,94 @@ export class RenamedSecondModelWhereInput {
     nullable: true
   })
   firstModelField?: RenamedFirstModelRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [RenamedSecondModelWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: RenamedSecondModelWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [RenamedSecondModelWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: RenamedSecondModelWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [RenamedSecondModelWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: RenamedSecondModelWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFilter | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get firstModelFieldId() {
+    return this.firstModelFieldId;
+  }
+
+  set firstModelFieldId(firstModelFieldId: IntFilter | undefined) {
+    this.firstModelFieldId = firstModelFieldId;
+  }
+
+  @TypeGraphQL.Field(_type => RenamedFirstModelRelationFilter, {
+    nullable: true
+  })
+  get firstModelField() {
+    return this.firstModelField;
+  }
+
+  set firstModelField(firstModelField: RenamedFirstModelRelationFilter | undefined) {
+    this.firstModelField = firstModelField;
+  }
 }
 "
 `;
@@ -3851,6 +8431,28 @@ export class RenamedSecondModelWhereUniqueInput {
     nullable: true
   })
   uniqueStringField?: string | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: number | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
 }
 "
 `;
@@ -3937,6 +8539,72 @@ export class ExampleOrderByInput {
     nullable: true
   })
   otherId?: \\"asc\\" | \\"desc\\" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get intIdField() {
+    return this.intIdField;
+  }
+
+  set intIdField(intIdField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.intIdField = intIdField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get stringField() {
+    return this.stringField;
+  }
+
+  set stringField(stringField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.stringField = stringField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get booleanField() {
+    return this.booleanField;
+  }
+
+  set booleanField(booleanField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.booleanField = booleanField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get dateField() {
+    return this.dateField;
+  }
+
+  set dateField(dateField: \\"asc\\" | \\"desc\\" | undefined) {
+    this.dateField = dateField;
+  }
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  get otherId() {
+    return this.otherId;
+  }
+
+  set otherId(otherId: \\"asc\\" | \\"desc\\" | undefined) {
+    this.otherId = otherId;
+  }
 }
 "
 `;
@@ -4006,6 +8674,116 @@ export class ExampleWhereInput {
     nullable: true
   })
   otherId?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [ExampleWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: ExampleWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [ExampleWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: ExampleWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [ExampleWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: ExampleWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get intIdField() {
+    return this.intIdField;
+  }
+
+  set intIdField(intIdField: IntFilter | undefined) {
+    this.intIdField = intIdField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get stringField() {
+    return this.stringField;
+  }
+
+  set stringField(stringField: StringFilter | undefined) {
+    this.stringField = stringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFilter | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => BoolFilter, {
+    nullable: true
+  })
+  get booleanField() {
+    return this.booleanField;
+  }
+
+  set booleanField(booleanField: BoolFilter | undefined) {
+    this.booleanField = booleanField;
+  }
+
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
+  })
+  get dateField() {
+    return this.dateField;
+  }
+
+  set dateField(dateField: DateTimeFilter | undefined) {
+    this.dateField = dateField;
+  }
+
+  @TypeGraphQL.Field(_type => OtherModelRelationFilter, {
+    nullable: true
+  })
+  get other() {
+    return this.other;
+  }
+
+  set other(other: OtherModelRelationFilter | undefined) {
+    this.other = other;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get otherId() {
+    return this.otherId;
+  }
+
+  set otherId(otherId: IntFilter | undefined) {
+    this.otherId = otherId;
+  }
 }
 "
 `;
@@ -4029,6 +8807,28 @@ export class ExampleWhereUniqueInput {
     nullable: true
   })
   stringField?: string | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get intIdField() {
+    return this.intIdField;
+  }
+
+  set intIdField(intIdField: number | undefined) {
+    this.intIdField = intIdField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get stringField() {
+    return this.stringField;
+  }
+
+  set stringField(stringField: string | undefined) {
+    this.stringField = stringField;
+  }
 }
 "
 `;
@@ -4146,6 +8946,116 @@ export class SampleScalarWhereWithAggregatesInput {
     nullable: true
   })
   jsonField?: JsonWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [SampleScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: SampleScalarWhereWithAggregatesInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [SampleScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: SampleScalarWhereWithAggregatesInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [SampleScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: SampleScalarWhereWithAggregatesInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntWithAggregatesFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
+  })
+  get stringField() {
+    return this.stringField;
+  }
+
+  set stringField(stringField: StringWithAggregatesFilter | undefined) {
+    this.stringField = stringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatWithAggregatesFilter, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatWithAggregatesFilter | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
+    nullable: true
+  })
+  get intField() {
+    return this.intField;
+  }
+
+  set intField(intField: IntWithAggregatesFilter | undefined) {
+    this.intField = intField;
+  }
+
+  @TypeGraphQL.Field(_type => BoolWithAggregatesFilter, {
+    nullable: true
+  })
+  get booleanField() {
+    return this.booleanField;
+  }
+
+  set booleanField(booleanField: BoolWithAggregatesFilter | undefined) {
+    this.booleanField = booleanField;
+  }
+
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
+  })
+  get dateField() {
+    return this.dateField;
+  }
+
+  set dateField(dateField: DateTimeWithAggregatesFilter | undefined) {
+    this.dateField = dateField;
+  }
+
+  @TypeGraphQL.Field(_type => JsonWithAggregatesFilter, {
+    nullable: true
+  })
+  get jsonField() {
+    return this.jsonField;
+  }
+
+  set jsonField(jsonField: JsonWithAggregatesFilter | undefined) {
+    this.jsonField = jsonField;
+  }
 }
 "
 `;
@@ -4187,6 +9097,61 @@ export class BoolWithAggregatesFilter {
     nullable: true
   })
   max?: NestedBoolFilter | undefined;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: boolean | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => NestedBoolWithAggregatesFilter, {
+    nullable: true
+  })
+  get not() {
+    return this.not;
+  }
+
+  set not(not: NestedBoolWithAggregatesFilter | undefined) {
+    this.not = not;
+  }
+
+  @TypeGraphQL.Field(_type => NestedIntFilter, {
+    nullable: true
+  })
+  get count() {
+    return this.count;
+  }
+
+  set count(count: NestedIntFilter | undefined) {
+    this.count = count;
+  }
+
+  @TypeGraphQL.Field(_type => NestedBoolFilter, {
+    nullable: true
+  })
+  get min() {
+    return this.min;
+  }
+
+  set min(min: NestedBoolFilter | undefined) {
+    this.min = min;
+  }
+
+  @TypeGraphQL.Field(_type => NestedBoolFilter, {
+    nullable: true
+  })
+  get max() {
+    return this.max;
+  }
+
+  set max(max: NestedBoolFilter | undefined) {
+    this.max = max;
+  }
 }
 "
 `;
@@ -4258,6 +9223,127 @@ export class DateTimeWithAggregatesFilter {
     nullable: true
   })
   max?: NestedDateTimeFilter | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: Date | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [Date], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: Date[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [Date], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: Date[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: Date | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: Date | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: Date | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => Date, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: Date | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedDateTimeWithAggregatesFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedDateTimeWithAggregatesFilter | undefined) {
+  this.not = not;
+}
+
+@TypeGraphQL.Field(_type => NestedIntFilter, {
+  nullable: true
+})
+get count() {
+  return this.count;
+}
+
+set count(count: NestedIntFilter | undefined) {
+  this.count = count;
+}
+
+@TypeGraphQL.Field(_type => NestedDateTimeFilter, {
+  nullable: true
+})
+get min() {
+  return this.min;
+}
+
+set min(min: NestedDateTimeFilter | undefined) {
+  this.min = min;
+}
+
+@TypeGraphQL.Field(_type => NestedDateTimeFilter, {
+  nullable: true
+})
+get max() {
+  return this.max;
+}
+
+set max(max: NestedDateTimeFilter | undefined) {
+  this.max = max;
+}
 }
 "
 `;
@@ -4339,6 +9425,149 @@ export class FloatWithAggregatesFilter {
     nullable: true
   })
   max?: NestedFloatFilter | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: number | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Float], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: number[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [TypeGraphQL.Float], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: number[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: number | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: number | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: number | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: number | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedFloatWithAggregatesFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedFloatWithAggregatesFilter | undefined) {
+  this.not = not;
+}
+
+@TypeGraphQL.Field(_type => NestedIntFilter, {
+  nullable: true
+})
+get count() {
+  return this.count;
+}
+
+set count(count: NestedIntFilter | undefined) {
+  this.count = count;
+}
+
+@TypeGraphQL.Field(_type => NestedFloatFilter, {
+  nullable: true
+})
+get avg() {
+  return this.avg;
+}
+
+set avg(avg: NestedFloatFilter | undefined) {
+  this.avg = avg;
+}
+
+@TypeGraphQL.Field(_type => NestedFloatFilter, {
+  nullable: true
+})
+get sum() {
+  return this.sum;
+}
+
+set sum(sum: NestedFloatFilter | undefined) {
+  this.sum = sum;
+}
+
+@TypeGraphQL.Field(_type => NestedFloatFilter, {
+  nullable: true
+})
+get min() {
+  return this.min;
+}
+
+set min(min: NestedFloatFilter | undefined) {
+  this.min = min;
+}
+
+@TypeGraphQL.Field(_type => NestedFloatFilter, {
+  nullable: true
+})
+get max() {
+  return this.max;
+}
+
+set max(max: NestedFloatFilter | undefined) {
+  this.max = max;
+}
 }
 "
 `;
@@ -4420,6 +9649,149 @@ export class IntWithAggregatesFilter {
     nullable: true
   })
   max?: NestedIntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: number | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: number[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: number[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: number | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: number | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: number | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: number | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => NestedIntWithAggregatesFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedIntWithAggregatesFilter | undefined) {
+  this.not = not;
+}
+
+@TypeGraphQL.Field(_type => NestedIntFilter, {
+  nullable: true
+})
+get count() {
+  return this.count;
+}
+
+set count(count: NestedIntFilter | undefined) {
+  this.count = count;
+}
+
+@TypeGraphQL.Field(_type => NestedFloatFilter, {
+  nullable: true
+})
+get avg() {
+  return this.avg;
+}
+
+set avg(avg: NestedFloatFilter | undefined) {
+  this.avg = avg;
+}
+
+@TypeGraphQL.Field(_type => NestedIntFilter, {
+  nullable: true
+})
+get sum() {
+  return this.sum;
+}
+
+set sum(sum: NestedIntFilter | undefined) {
+  this.sum = sum;
+}
+
+@TypeGraphQL.Field(_type => NestedIntFilter, {
+  nullable: true
+})
+get min() {
+  return this.min;
+}
+
+set min(min: NestedIntFilter | undefined) {
+  this.min = min;
+}
+
+@TypeGraphQL.Field(_type => NestedIntFilter, {
+  nullable: true
+})
+get max() {
+  return this.max;
+}
+
+set max(max: NestedIntFilter | undefined) {
+  this.max = max;
+}
 }
 "
 `;
@@ -4460,6 +9832,61 @@ export class JsonWithAggregatesFilter {
     nullable: true
   })
   max?: NestedJsonFilter | undefined;
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.JSONResolver, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: Prisma.InputJsonValue | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => GraphQLScalars.JSONResolver, {
+    nullable: true
+  })
+  get not() {
+    return this.not;
+  }
+
+  set not(not: Prisma.InputJsonValue | undefined) {
+    this.not = not;
+  }
+
+  @TypeGraphQL.Field(_type => NestedIntFilter, {
+    nullable: true
+  })
+  get count() {
+    return this.count;
+  }
+
+  set count(count: NestedIntFilter | undefined) {
+    this.count = count;
+  }
+
+  @TypeGraphQL.Field(_type => NestedJsonFilter, {
+    nullable: true
+  })
+  get min() {
+    return this.min;
+  }
+
+  set min(min: NestedJsonFilter | undefined) {
+    this.min = min;
+  }
+
+  @TypeGraphQL.Field(_type => NestedJsonFilter, {
+    nullable: true
+  })
+  get max() {
+    return this.max;
+  }
+
+  set max(max: NestedJsonFilter | undefined) {
+    this.max = max;
+  }
 }
 "
 `;
@@ -4552,6 +9979,171 @@ export class StringWithAggregatesFilter {
     nullable: true
   })
   max?: NestedStringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  get equals() {
+    return this.equals;
+  }
+
+  set equals(equals: string | undefined) {
+    this.equals = equals;
+  }
+
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: true
+  })
+  get in() {
+    return this.in;
+  }
+
+  set in(in: string[] | undefined) {
+  this.in = in;
+}
+
+@TypeGraphQL.Field(_type => [String], {
+  nullable: true
+})
+get notIn() {
+  return this.notIn;
+}
+
+set notIn(notIn: string[] | undefined) {
+  this.notIn = notIn;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get lt() {
+  return this.lt;
+}
+
+set lt(lt: string | undefined) {
+  this.lt = lt;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get lte() {
+  return this.lte;
+}
+
+set lte(lte: string | undefined) {
+  this.lte = lte;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get gt() {
+  return this.gt;
+}
+
+set gt(gt: string | undefined) {
+  this.gt = gt;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get gte() {
+  return this.gte;
+}
+
+set gte(gte: string | undefined) {
+  this.gte = gte;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get contains() {
+  return this.contains;
+}
+
+set contains(contains: string | undefined) {
+  this.contains = contains;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get startsWith() {
+  return this.startsWith;
+}
+
+set startsWith(startsWith: string | undefined) {
+  this.startsWith = startsWith;
+}
+
+@TypeGraphQL.Field(_type => String, {
+  nullable: true
+})
+get endsWith() {
+  return this.endsWith;
+}
+
+set endsWith(endsWith: string | undefined) {
+  this.endsWith = endsWith;
+}
+
+@TypeGraphQL.Field(_type => QueryMode, {
+  nullable: true
+})
+get mode() {
+  return this.mode;
+}
+
+set mode(mode: \\"default\\" | \\"insensitive\\" | undefined) {
+  this.mode = mode;
+}
+
+@TypeGraphQL.Field(_type => NestedStringWithAggregatesFilter, {
+  nullable: true
+})
+get not() {
+  return this.not;
+}
+
+set not(not: NestedStringWithAggregatesFilter | undefined) {
+  this.not = not;
+}
+
+@TypeGraphQL.Field(_type => NestedIntFilter, {
+  nullable: true
+})
+get count() {
+  return this.count;
+}
+
+set count(count: NestedIntFilter | undefined) {
+  this.count = count;
+}
+
+@TypeGraphQL.Field(_type => NestedStringFilter, {
+  nullable: true
+})
+get min() {
+  return this.min;
+}
+
+set min(min: NestedStringFilter | undefined) {
+  this.min = min;
+}
+
+@TypeGraphQL.Field(_type => NestedStringFilter, {
+  nullable: true
+})
+get max() {
+  return this.max;
+}
+
+set max(max: NestedStringFilter | undefined) {
+  this.max = max;
+}
 }
 "
 `;
@@ -4631,6 +10223,61 @@ export class SampleWhereInput {
     nullable: true
   })
   modelFieldName?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => [SampleWhereInput], {
+    nullable: true
+  })
+  get AND() {
+    return this.AND;
+  }
+
+  set AND(AND: SampleWhereInput[] | undefined) {
+    this.AND = AND;
+  }
+
+  @TypeGraphQL.Field(_type => [SampleWhereInput], {
+    nullable: true
+  })
+  get OR() {
+    return this.OR;
+  }
+
+  set OR(OR: SampleWhereInput[] | undefined) {
+    this.OR = OR;
+  }
+
+  @TypeGraphQL.Field(_type => [SampleWhereInput], {
+    nullable: true
+  })
+  get NOT() {
+    return this.NOT;
+  }
+
+  set NOT(NOT: SampleWhereInput[] | undefined) {
+    this.NOT = NOT;
+  }
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFilter | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  get modelFieldName() {
+    return this.modelFieldName;
+  }
+
+  set modelFieldName(modelFieldName: StringFilter | undefined) {
+    this.modelFieldName = modelFieldName;
+  }
 }
 "
 `;
@@ -4678,6 +10325,39 @@ export class FirstModelCreateNestedOneWithoutSecondModelsFieldInput {
     nullable: true
   })
   connect?: FirstModelWhereUniqueInput | undefined;
+
+  @TypeGraphQL.Field(_type => FirstModelUncheckedCreateWithoutSecondModelsFieldInput, {
+    nullable: true
+  })
+  get create() {
+    return this.create;
+  }
+
+  set create(create: FirstModelUncheckedCreateWithoutSecondModelsFieldInput | undefined) {
+    this.create = create;
+  }
+
+  @TypeGraphQL.Field(_type => FirstModelCreateOrConnectWithoutSecondModelsFieldInput, {
+    nullable: true
+  })
+  get connectOrCreate() {
+    return this.connectOrCreate;
+  }
+
+  set connectOrCreate(connectOrCreate: FirstModelCreateOrConnectWithoutSecondModelsFieldInput | undefined) {
+    this.connectOrCreate = connectOrCreate;
+  }
+
+  @TypeGraphQL.Field(_type => FirstModelWhereUniqueInput, {
+    nullable: true
+  })
+  get connect() {
+    return this.connect;
+  }
+
+  set connect(connect: FirstModelWhereUniqueInput | undefined) {
+    this.connect = connect;
+  }
 }
 "
 `;
@@ -4703,6 +10383,28 @@ export class FirstModelCreateOrConnectWithoutSecondModelsFieldInput {
     nullable: false
   })
   create!: FirstModelUncheckedCreateWithoutSecondModelsFieldInput;
+
+  @TypeGraphQL.Field(_type => FirstModelWhereUniqueInput, {
+    nullable: false
+  })
+  get where() {
+    return this.where;
+  }
+
+  set where(where: FirstModelWhereUniqueInput) {
+    this.where = where;
+  }
+
+  @TypeGraphQL.Field(_type => FirstModelUncheckedCreateWithoutSecondModelsFieldInput, {
+    nullable: false
+  })
+  get create() {
+    return this.create;
+  }
+
+  set create(create: FirstModelUncheckedCreateWithoutSecondModelsFieldInput) {
+    this.create = create;
+  }
 }
 "
 `;
@@ -4726,6 +10428,28 @@ export class FirstModelCreateWithoutSecondModelsFieldInput {
     nullable: false
   })
   floatField!: number;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: false
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: number) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -4760,6 +10484,50 @@ export class FirstModelUncheckedCreateInput {
     nullable: true
   })
   secondModelsField?: SecondModelUncheckedCreateNestedManyWithoutFirstModelFieldInput | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: number | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: false
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: number) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => SecondModelUncheckedCreateNestedManyWithoutFirstModelFieldInput, {
+    nullable: true
+  })
+  get secondModelsField() {
+    return this.secondModelsField;
+  }
+
+  set secondModelsField(secondModelsField: SecondModelUncheckedCreateNestedManyWithoutFirstModelFieldInput | undefined) {
+    this.secondModelsField = secondModelsField;
+  }
 }
 "
 `;
@@ -4788,6 +10556,39 @@ export class FirstModelUncheckedCreateWithoutSecondModelsFieldInput {
     nullable: false
   })
   floatField!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: number | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: string) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: false
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: number) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -4825,6 +10626,50 @@ export class FirstModelUncheckedUpdateInput {
     nullable: true
   })
   secondModelsField?: SecondModelUncheckedUpdateManyWithoutFirstModelFieldInput | undefined;
+
+  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFieldUpdateOperationsInput | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFieldUpdateOperationsInput | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFieldUpdateOperationsInput | undefined) {
+    this.floatField = floatField;
+  }
+
+  @TypeGraphQL.Field(_type => SecondModelUncheckedUpdateManyWithoutFirstModelFieldInput, {
+    nullable: true
+  })
+  get secondModelsField() {
+    return this.secondModelsField;
+  }
+
+  set secondModelsField(secondModelsField: SecondModelUncheckedUpdateManyWithoutFirstModelFieldInput | undefined) {
+    this.secondModelsField = secondModelsField;
+  }
 }
 "
 `;
@@ -4856,6 +10701,39 @@ export class FirstModelUncheckedUpdateManyInput {
     nullable: true
   })
   floatField?: FloatFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFieldUpdateOperationsInput | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFieldUpdateOperationsInput | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFieldUpdateOperationsInput | undefined) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -4887,6 +10765,39 @@ export class FirstModelUncheckedUpdateWithoutSecondModelsFieldInput {
     nullable: true
   })
   floatField?: FloatFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get idField() {
+    return this.idField;
+  }
+
+  set idField(idField: IntFieldUpdateOperationsInput | undefined) {
+    this.idField = idField;
+  }
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFieldUpdateOperationsInput | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFieldUpdateOperationsInput | undefined) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -4930,6 +10841,61 @@ export class FirstModelUpdateOneRequiredWithoutSecondModelsFieldInput {
     nullable: true
   })
   update?: FirstModelUncheckedUpdateWithoutSecondModelsFieldInput | undefined;
+
+  @TypeGraphQL.Field(_type => FirstModelUncheckedCreateWithoutSecondModelsFieldInput, {
+    nullable: true
+  })
+  get create() {
+    return this.create;
+  }
+
+  set create(create: FirstModelUncheckedCreateWithoutSecondModelsFieldInput | undefined) {
+    this.create = create;
+  }
+
+  @TypeGraphQL.Field(_type => FirstModelCreateOrConnectWithoutSecondModelsFieldInput, {
+    nullable: true
+  })
+  get connectOrCreate() {
+    return this.connectOrCreate;
+  }
+
+  set connectOrCreate(connectOrCreate: FirstModelCreateOrConnectWithoutSecondModelsFieldInput | undefined) {
+    this.connectOrCreate = connectOrCreate;
+  }
+
+  @TypeGraphQL.Field(_type => FirstModelUpsertWithoutSecondModelsFieldInput, {
+    nullable: true
+  })
+  get upsert() {
+    return this.upsert;
+  }
+
+  set upsert(upsert: FirstModelUpsertWithoutSecondModelsFieldInput | undefined) {
+    this.upsert = upsert;
+  }
+
+  @TypeGraphQL.Field(_type => FirstModelWhereUniqueInput, {
+    nullable: true
+  })
+  get connect() {
+    return this.connect;
+  }
+
+  set connect(connect: FirstModelWhereUniqueInput | undefined) {
+    this.connect = connect;
+  }
+
+  @TypeGraphQL.Field(_type => FirstModelUncheckedUpdateWithoutSecondModelsFieldInput, {
+    nullable: true
+  })
+  get update() {
+    return this.update;
+  }
+
+  set update(update: FirstModelUncheckedUpdateWithoutSecondModelsFieldInput | undefined) {
+    this.update = update;
+  }
 }
 "
 `;
@@ -4955,6 +10921,28 @@ export class FirstModelUpdateWithoutSecondModelsFieldInput {
     nullable: true
   })
   floatField?: FloatFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get uniqueStringField() {
+    return this.uniqueStringField;
+  }
+
+  set uniqueStringField(uniqueStringField: StringFieldUpdateOperationsInput | undefined) {
+    this.uniqueStringField = uniqueStringField;
+  }
+
+  @TypeGraphQL.Field(_type => FloatFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  get floatField() {
+    return this.floatField;
+  }
+
+  set floatField(floatField: FloatFieldUpdateOperationsInput | undefined) {
+    this.floatField = floatField;
+  }
 }
 "
 `;
@@ -4980,6 +10968,28 @@ export class FirstModelUpsertWithoutSecondModelsFieldInput {
     nullable: false
   })
   create!: FirstModelUncheckedCreateWithoutSecondModelsFieldInput;
+
+  @TypeGraphQL.Field(_type => FirstModelUncheckedUpdateWithoutSecondModelsFieldInput, {
+    nullable: false
+  })
+  get update() {
+    return this.update;
+  }
+
+  set update(update: FirstModelUncheckedUpdateWithoutSecondModelsFieldInput) {
+    this.update = update;
+  }
+
+  @TypeGraphQL.Field(_type => FirstModelUncheckedCreateWithoutSecondModelsFieldInput, {
+    nullable: false
+  })
+  get create() {
+    return this.create;
+  }
+
+  set create(create: FirstModelUncheckedCreateWithoutSecondModelsFieldInput) {
+    this.create = create;
+  }
 }
 "
 `;

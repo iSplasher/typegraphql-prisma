@@ -216,6 +216,39 @@ describe("inputs", () => {
     expect(indexTSFile).toMatchSnapshot("index");
   });
 
+  it("should properly generate input type classes for omitted fields", async () => {
+    const schema = /* prisma */ `
+      datasource db {
+        provider = "postgresql"
+        url      = env("DATABASE_URL")
+      }
+      model SampleModel {
+        intIdField          Int     @id @default(autoincrement())
+        stringField         String  @unique
+        floatField          Float
+        /// @TypeGraphQL.omit(input: true)
+        booleanField        Boolean
+      }
+    `;
+
+    await generateCodeFromSchema(schema, { outputDirPath });
+    const sampleModelWhereInputTSFile = await readGeneratedFile(
+      "/resolvers/inputs/SampleModelWhereInput.ts",
+    );
+    const sampleModelWhereUniqueInputTSFile = await readGeneratedFile(
+      "/resolvers/inputs/SampleModelWhereUniqueInput.ts",
+    );
+    const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
+
+    expect(sampleModelWhereInputTSFile).toMatchSnapshot(
+      "SampleModelWhereInput",
+    );
+    expect(sampleModelWhereUniqueInputTSFile).toMatchSnapshot(
+      "SampleModelWhereUniqueInput",
+    );
+    expect(indexTSFile).toMatchSnapshot("index");
+  });
+
   it("should properly generate input type classes for filtering models by many to many relation fields", async () => {
     const schema = /* prisma */ `
       datasource db {
