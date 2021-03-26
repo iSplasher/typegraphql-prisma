@@ -151,7 +151,7 @@ export function generateInputTypeClassFromType(
     field => !omittedModelFields.includes(field.name),
   );
 
-  const mappedFields = inputType.fields.filter(field => field.name);
+  const mappedFields = inputFields.filter(field => field.hasMappedName);
 
   sourceFile.addClass({
     name: inputType.typeName,
