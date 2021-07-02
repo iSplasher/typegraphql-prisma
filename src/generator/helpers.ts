@@ -168,6 +168,11 @@ function getInputKeywordPhrasePosition(inputTypeName: string) {
   const inputParseResult = [
     "Unchecked",
     "Create",
+    "CountOrderBy",
+    "AvgOrderBy",
+    "MaxOrderBy",
+    "MinOrderBy",
+    "SumOrderBy",
     "OrderBy",
     "Update",
     "Upsert",
@@ -201,9 +206,8 @@ export function getInputTypeName(
   originalInputName: string,
   dmmfDocument: DmmfDocument,
 ): string {
-  const keywordPhrasePosition = getInputKeywordPhrasePosition(
-    originalInputName,
-  );
+  const keywordPhrasePosition =
+    getInputKeywordPhrasePosition(originalInputName);
   if (!keywordPhrasePosition) {
     return originalInputName;
   }

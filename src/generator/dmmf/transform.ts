@@ -127,64 +127,15 @@ function transformInputType(dmmfDocument: DmmfDocument) {
     return {
       ...inputType,
       typeName: getInputTypeName(inputType.name, dmmfDocument),
-      fields: inputType.fields.map<DMMF.SchemaArg>(field => {
-        const modelField = modelType?.fields.find(it => it.name === field.name);
-        const typeName = modelField?.typeFieldAlias ?? field.name;
-        const selectedInputType = selectInputTypeFromTypes(dmmfDocument)(
-          field.inputTypes,
-        );
-        const typeGraphQLType = getTypeGraphQLType(
-          selectedInputType,
-          dmmfDocument,
-        );
-        const fieldTSType = getFieldTSType(
-          dmmfDocument,
-          selectedInputType,
-          field.isRequired,
-          true,
-        );
-        return {
-          ...field,
-          selectedInputType,
-          typeName,
-          typeGraphQLType,
-          fieldTSType,
-          hasMappedName: field.name !== typeName,
-        };
-      }),
-    };
-  };
-}
-
-function transformOutputType(dmmfDocument: DmmfDocument) {
-  return (outputType: PrismaDMMF.OutputType): DMMF.OutputType => {
-    // TODO: make it more future-proof
-    const modelName = outputType.name.replace("Aggregate", "");
-    const typeName = getMappedOutputTypeName(dmmfDocument, outputType.name);
-
-    return {
-      ...outputType,
-      modelName,
-      typeName,
-      fields: outputType.fields.map<DMMF.OutputSchemaField>(field => {
-        const isFieldRequired = field.isNullable ? false : true;
-        const outputType: DMMF.TypeInfo = {
-          ...field.outputType,
-          type: getMappedOutputTypeName(
-            dmmfDocument,
-            field.outputType.type as string,
-          ),
-        };
-        const fieldTSType = getFieldTSType(
-          dmmfDocument,
-          outputType,
-          isFieldRequired,
-          false,
-        );
-        const typeGraphQLType = getTypeGraphQLType(outputType, dmmfDocument);
-        const args = field.args.map<DMMF.SchemaArg>(arg => {
+      fields: inputType.fields
+        .filter(field => field.deprecation === undefined)
+        .map<DMMF.SchemaArg>(field => {
+          const modelField = modelType?.fields.find(
+            it => it.name === field.name,
+          );
+          const typeName = modelField?.typeFieldAlias ?? field.name;
           const selectedInputType = selectInputTypeFromTypes(dmmfDocument)(
-            arg.inputTypes,
+            field.inputTypes,
           );
           const typeGraphQLType = getTypeGraphQLType(
             selectedInputType,
@@ -193,35 +144,89 @@ function transformOutputType(dmmfDocument: DmmfDocument) {
           const fieldTSType = getFieldTSType(
             dmmfDocument,
             selectedInputType,
-            arg.isRequired,
+            field.isRequired,
             true,
           );
+          return {
+            ...field,
+            selectedInputType,
+            typeName,
+            typeGraphQLType,
+            fieldTSType,
+            hasMappedName: field.name !== typeName,
+          };
+        }),
+    };
+  };
+}
+
+function transformOutputType(dmmfDocument: DmmfDocument) {
+  return (outputType: PrismaDMMF.OutputType): DMMF.OutputType => {
+    const typeName = getMappedOutputTypeName(dmmfDocument, outputType.name);
+    return {
+      ...outputType,
+      typeName,
+      fields: outputType.fields
+        .filter(field => field.deprecation === undefined)
+        .map<DMMF.OutputSchemaField>(field => {
+          const isFieldRequired = field.isNullable !== true;
+          const outputTypeInfo: DMMF.TypeInfo = {
+            ...field.outputType,
+            type: getMappedOutputTypeName(
+              dmmfDocument,
+              field.outputType.type as string,
+            ),
+          };
+          const fieldTSType = getFieldTSType(
+            dmmfDocument,
+            outputTypeInfo,
+            isFieldRequired,
+            false,
+          );
+          const typeGraphQLType = getTypeGraphQLType(
+            outputTypeInfo,
+            dmmfDocument,
+          );
+          const args = field.args.map<DMMF.SchemaArg>(arg => {
+            const selectedInputType = selectInputTypeFromTypes(dmmfDocument)(
+              arg.inputTypes,
+            );
+            const typeGraphQLType = getTypeGraphQLType(
+              selectedInputType,
+              dmmfDocument,
+            );
+            const fieldTSType = getFieldTSType(
+              dmmfDocument,
+              selectedInputType,
+              arg.isRequired,
+              true,
+            );
+
+            return {
+              ...arg,
+              selectedInputType,
+              fieldTSType,
+              typeGraphQLType,
+              hasMappedName: arg.name !== typeName,
+              // TODO: add proper mapping in the future if needed
+              typeName: arg.name,
+            };
+          });
+          const argsTypeName =
+            args.length > 0
+              ? `${typeName}${pascalCase(field.name)}Args`
+              : undefined;
 
           return {
-            ...arg,
-            selectedInputType,
+            ...field,
+            isRequired: isFieldRequired,
+            outputType: outputTypeInfo,
             fieldTSType,
             typeGraphQLType,
-            hasMappedName: arg.name !== typeName,
-            // TODO: add proper mapping in the future if needed
-            typeName: arg.name,
+            args,
+            argsTypeName,
           };
-        });
-        const argsTypeName =
-          args.length > 0
-            ? `${typeName}${pascalCase(field.name)}Args`
-            : undefined;
-
-        return {
-          ...field,
-          isRequired: isFieldRequired,
-          outputType,
-          fieldTSType,
-          typeGraphQLType,
-          args,
-          argsTypeName,
-        };
-      }),
+        }),
     };
   };
 }
@@ -243,6 +248,7 @@ function getMappedOutputTypeName(
     "AvgAggregateOutputType",
     "SumAggregateOutputType",
     "GroupByOutputType",
+    "CountOutputType",
   ].find(type => outputTypeName.includes(type));
   if (dedicatedTypeSuffix) {
     const modelName = outputTypeName.replace(dedicatedTypeSuffix, "");

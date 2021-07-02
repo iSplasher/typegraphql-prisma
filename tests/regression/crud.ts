@@ -18,11 +18,6 @@ describe("crud", () => {
 
   it("should properly generate resolver class for single prisma model", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model User {
         intIdField          Int     @id @default(autoincrement())
         uniqueStringField   String  @unique
@@ -57,11 +52,6 @@ describe("crud", () => {
 
   it("should properly generate resolver class when useOriginalMapping is used", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model User {
         intIdField          Int     @id @default(autoincrement())
         uniqueStringField   String  @unique
@@ -89,11 +79,6 @@ describe("crud", () => {
 
   it("should properly generate resolver class when cannot pluralize model name", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model Staff {
         intIdField          Int     @id @default(autoincrement())
         uniqueStringField   String  @unique
@@ -114,11 +99,6 @@ describe("crud", () => {
 
   it("should properly generate args classes for every method of crud resolver", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model User {
         intIdField          Int     @id @default(autoincrement())
         uniqueStringField   String  @unique
@@ -158,6 +138,12 @@ describe("crud", () => {
     const upsertUserArgsTSFile = await readGeneratedFile(
       "/resolvers/crud/User/args/UpsertUserArgs.ts",
     );
+    const groupByUserArgsTSFile = await readGeneratedFile(
+      "/resolvers/crud/User/args/GroupByUserArgs.ts",
+    );
+    const createManyUserArgsTSFile = await readGeneratedFile(
+      "/resolvers/crud/User/args/CreateManyUserArgs.ts",
+    );
     const indexTSFile = await readGeneratedFile(
       "/resolvers/crud/User/args/index.ts",
     );
@@ -172,16 +158,13 @@ describe("crud", () => {
     expect(updateManyUserArgsTSFile).toMatchSnapshot("UpdateManyUserArgs");
     expect(updateUserArgsTSFile).toMatchSnapshot("UpdateUserArgs");
     expect(upsertUserArgsTSFile).toMatchSnapshot("UpsertUserArgs");
+    expect(groupByUserArgsTSFile).toMatchSnapshot("GroupByUserArgs");
+    expect(createManyUserArgsTSFile).toMatchSnapshot("CreateManyUserArgs");
     expect(indexTSFile).toMatchSnapshot("Index");
   });
 
   it("should properly generate actions resolver classes for prisma model", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model User {
         intIdField          Int     @id @default(autoincrement())
         uniqueStringField   String  @unique
@@ -218,6 +201,12 @@ describe("crud", () => {
     const upsertUserResolverTSFile = await readGeneratedFile(
       "/resolvers/crud/User/UpsertUserResolver.ts",
     );
+    const groupByUserResolverTSFile = await readGeneratedFile(
+      "/resolvers/crud/User/GroupByUserResolver.ts",
+    );
+    const createManyUserResolverTSFile = await readGeneratedFile(
+      "/resolvers/crud/User/CreateManyUserResolver.ts",
+    );
     const indexTSFile = await readGeneratedFile("/resolvers/crud/index.ts");
     const argsIndexTSFile = await readGeneratedFile(
       "/resolvers/crud/args.index.ts",
@@ -246,6 +235,10 @@ describe("crud", () => {
     );
     expect(updateUserResolverTSFile).toMatchSnapshot("UpdateUserResolver");
     expect(upsertUserResolverTSFile).toMatchSnapshot("UpsertUserResolver");
+    expect(groupByUserResolverTSFile).toMatchSnapshot("GroupByUserResolver");
+    expect(createManyUserResolverTSFile).toMatchSnapshot(
+      "CreateManyUserResolver",
+    );
     expect(indexTSFile).toMatchSnapshot("Index");
     expect(argsIndexTSFile).toMatchSnapshot("argsIndex");
     expect(crudIndexTSFile).toMatchSnapshot("crudIndex");
@@ -255,11 +248,6 @@ describe("crud", () => {
   describe("when model is renamed", () => {
     it("should properly generate resolver class for single prisma model", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         /// @@TypeGraphQL.type(name: "Client")
         model User {
           intIdField          Int     @id @default(autoincrement())
@@ -282,11 +270,6 @@ describe("crud", () => {
 
     it("should properly generate args classes for every method of crud resolver", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         /// @@TypeGraphQL.type(name: "Client")
         model User {
           intIdField          Int     @id @default(autoincrement())
@@ -327,6 +310,12 @@ describe("crud", () => {
       const upsertClientArgsTSFile = await readGeneratedFile(
         "/resolvers/crud/Client/args/UpsertClientArgs.ts",
       );
+      const groupByClientArgsTSFile = await readGeneratedFile(
+        "/resolvers/crud/Client/args/GroupByClientArgs.ts",
+      );
+      const createManyClientArgsTSFile = await readGeneratedFile(
+        "/resolvers/crud/Client/args/CreateManyClientArgs.ts",
+      );
       const indexTSFile = await readGeneratedFile(
         "/resolvers/crud/Client/args/index.ts",
       );
@@ -347,16 +336,15 @@ describe("crud", () => {
       );
       expect(updateClientArgsTSFile).toMatchSnapshot("UpdateClientArgs");
       expect(upsertClientArgsTSFile).toMatchSnapshot("UpsertClientArgs");
+      expect(groupByClientArgsTSFile).toMatchSnapshot("GroupByClientArgs");
+      expect(createManyClientArgsTSFile).toMatchSnapshot(
+        "CreateManyClientArgs",
+      );
       expect(indexTSFile).toMatchSnapshot("Index");
     });
 
     it("should properly generate actions resolver classes for prisma model", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         /// @@TypeGraphQL.type(name: "Client")
         model User {
           intIdField          Int     @id @default(autoincrement())
@@ -394,6 +382,12 @@ describe("crud", () => {
       const upsertClientResolverTSFile = await readGeneratedFile(
         "/resolvers/crud/Client/UpsertClientResolver.ts",
       );
+      const groupByClientResolverTSFile = await readGeneratedFile(
+        "/resolvers/crud/Client/GroupByClientResolver.ts",
+      );
+      const createManyClientResolverTSFile = await readGeneratedFile(
+        "/resolvers/crud/Client/CreateManyClientResolver.ts",
+      );
 
       expect(createClientResolverTSFile).toMatchSnapshot(
         "CreateOneClientResolver",
@@ -422,83 +416,18 @@ describe("crud", () => {
       expect(upsertClientResolverTSFile).toMatchSnapshot(
         "UpsertClientResolver",
       );
-    });
-  });
-
-  describe("when preview feature `groupBy` is enabled", () => {
-    it("should properly generate group by resolver class and crud method for prisma model", async () => {
-      const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
-        model User {
-          intIdField          Int     @id @default(autoincrement())
-          uniqueStringField   String  @unique
-          optionalStringField String?
-          dateField           DateTime
-        }
-      `;
-
-      await generateCodeFromSchema(schema, {
-        outputDirPath,
-        enabledPreviewFeatures: ["groupBy"],
-      });
-      const groupByUserResolverTSFile = await readGeneratedFile(
-        "/resolvers/crud/User/GroupByUserResolver.ts",
+      expect(groupByClientResolverTSFile).toMatchSnapshot(
+        "GroupByClientResolver",
       );
-      const userCrudResolverTSFile = await readGeneratedFile(
-        "/resolvers/crud/User/UserCrudResolver.ts",
+      expect(createManyClientResolverTSFile).toMatchSnapshot(
+        "CreateManyClientResolver",
       );
-      const actionsIndexTSFile = await readGeneratedFile(
-        "/resolvers/crud/resolvers-actions.index.ts",
-      );
-
-      expect(groupByUserResolverTSFile).toMatchSnapshot("GroupByUserResolver");
-      expect(actionsIndexTSFile).toMatchSnapshot("actionsIndex");
-      expect(userCrudResolverTSFile).toMatchSnapshot("UserCrudResolver");
-    });
-
-    it("should properly generate group by args class for prisma model", async () => {
-      const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
-        model User {
-          intIdField          Int     @id @default(autoincrement())
-          uniqueStringField   String  @unique
-          optionalStringField String?
-          dateField           DateTime
-        }
-      `;
-
-      await generateCodeFromSchema(schema, {
-        outputDirPath,
-        enabledPreviewFeatures: ["groupBy"],
-      });
-      const groupByUserArgsTSFile = await readGeneratedFile(
-        "/resolvers/crud/User/args/GroupByUserArgs.ts",
-      );
-      const indexTSFile = await readGeneratedFile(
-        "/resolvers/crud/User/args/index.ts",
-      );
-
-      expect(groupByUserArgsTSFile).toMatchSnapshot("GroupByUserArgs");
-      expect(indexTSFile).toMatchSnapshot("Index");
     });
   });
 
   describe("when useUncheckedScalarInputs mode is enabled", () => {
     it("should properly generate create and update args classes", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         model User {
           intIdField          Int     @id @default(autoincrement())
           uniqueStringField   String  @unique
@@ -531,60 +460,9 @@ describe("crud", () => {
     });
   });
 
-  describe("when `createMany` preview feature is enabled", () => {
-    it("should properly generate createMany method, resolver and args classes", async () => {
-      const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
-        model User {
-          intIdField          Int     @id @default(autoincrement())
-          uniqueStringField   String  @unique
-          optionalStringField String?
-          dateField           DateTime
-        }
-      `;
-
-      await generateCodeFromSchema(schema, {
-        outputDirPath,
-        enabledPreviewFeatures: ["createMany"],
-      });
-      const createManyUserArgsTSFile = await readGeneratedFile(
-        "/resolvers/crud/User/args/CreateManyUserArgs.ts",
-      );
-      const argsIndexTSFile = await readGeneratedFile(
-        "/resolvers/crud/User/args/index.ts",
-      );
-      const createManyUserResolverTSFile = await readGeneratedFile(
-        "/resolvers/crud/User/CreateManyUserResolver.ts",
-      );
-      const userCrudResolverTSFile = await readGeneratedFile(
-        "/resolvers/crud/User/UserCrudResolver.ts",
-      );
-      const actionsIndexTSFile = await readGeneratedFile(
-        "/resolvers/crud/resolvers-actions.index.ts",
-      );
-
-      expect(createManyUserResolverTSFile).toMatchSnapshot(
-        "CreateManyUserResolver",
-      );
-      expect(userCrudResolverTSFile).toMatchSnapshot("UserCrudResolver");
-      expect(createManyUserArgsTSFile).toMatchSnapshot("CreateManyUserArgs");
-      expect(actionsIndexTSFile).toMatchSnapshot("actionsIndex");
-      expect(argsIndexTSFile).toMatchSnapshot("argsIndex");
-    });
-  });
-
   describe("when `orderByRelation` preview feature is enabled", () => {
     it("should properly generate args classes for sorting by many-to-many relation fields", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         model FirstModel {
           idField            Int            @id @default(autoincrement())
           uniqueStringField  String         @unique
@@ -601,7 +479,7 @@ describe("crud", () => {
 
       await generateCodeFromSchema(schema, {
         outputDirPath,
-        enabledPreviewFeatures: ["orderByRelation"],
+        previewFeatures: ["orderByRelation"],
       });
       const aggregateFirstModelArgsTSFile = await readGeneratedFile(
         "/resolvers/crud/FirstModel/args/AggregateFirstModelArgs.ts",
@@ -630,11 +508,6 @@ describe("crud", () => {
 
     it("should properly generate args classes for sorting by one-to-many relation fields", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         model FirstModel {
           idField            Int            @id @default(autoincrement())
           uniqueStringField  String         @unique
@@ -652,7 +525,7 @@ describe("crud", () => {
 
       await generateCodeFromSchema(schema, {
         outputDirPath,
-        enabledPreviewFeatures: ["orderByRelation"],
+        previewFeatures: ["orderByRelation"],
       });
       const aggregateSecondModelArgsTSFile = await readGeneratedFile(
         "/resolvers/crud/SecondModel/args/AggregateSecondModelArgs.ts",
@@ -683,11 +556,6 @@ describe("crud", () => {
   describe("when emitTranspiledCode is set to true", () => {
     it("should properly generate imports in js files for resolver classes", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         model User {
           intIdField          Int     @id @default(autoincrement())
           uniqueStringField   String  @unique
@@ -706,5 +574,31 @@ describe("crud", () => {
 
       expect(userCrudResolverTSFile).toMatchSnapshot("UserCrudResolver");
     }, 20000);
+  });
+
+  describe("when `orderByAggregateGroup` preview feature is enabled", () => {
+    it("should properly generate args classes for group by action using aggregate input", async () => {
+      const schema = /* prisma */ `
+        model Sample {
+          idField       Int     @id @default(autoincrement())
+          stringField   String
+          floatField    Float
+          intField      Int
+          booleanField  Boolean
+          dateField     DateTime
+          jsonField     Json
+        }
+      `;
+
+      await generateCodeFromSchema(schema, {
+        outputDirPath,
+        previewFeatures: ["orderByAggregateGroup"],
+      });
+      const groupBySampleArgsTSFile = await readGeneratedFile(
+        "/resolvers/crud/Sample/args/GroupBySampleArgs.ts",
+      );
+
+      expect(groupBySampleArgsTSFile).toMatchSnapshot("GroupBySampleArgs");
+    });
   });
 });

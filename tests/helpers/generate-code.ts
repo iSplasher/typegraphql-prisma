@@ -2,11 +2,14 @@ import generateCode from "../../src/generator/generate-code";
 import getPrismaClientDmmfFromPrismaSchema from "./dmmf";
 import { GenerateCodeOptions } from "../../src/generator/options";
 
-type SupportedPreviewFeatures = "groupBy" | "createMany" | "orderByRelation";
+type SupportedPreviewFeatures =
+  | "orderByRelation"
+  | "selectRelationCount"
+  | "orderByAggregateGroup";
 
 interface GenerateCodeFromSchemaOptions
   extends Omit<GenerateCodeOptions, "relativePrismaOutputPath"> {
-  enabledPreviewFeatures?: SupportedPreviewFeatures[];
+  previewFeatures?: SupportedPreviewFeatures[];
 }
 
 export async function generateCodeFromSchema(
@@ -14,10 +17,7 @@ export async function generateCodeFromSchema(
   options: GenerateCodeFromSchemaOptions,
 ): Promise<void> {
   await generateCode(
-    await getPrismaClientDmmfFromPrismaSchema(
-      schema,
-      options.enabledPreviewFeatures,
-    ),
+    await getPrismaClientDmmfFromPrismaSchema(schema, options.previewFeatures),
     {
       ...options,
       relativePrismaOutputPath: "../../helpers/prisma-client-mock",

@@ -18,10 +18,6 @@ describe("inputs", () => {
 
   it("should properly generate input type classes for filtering scalar fields", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
       model SampleModel {
         intIdField            Int     @id @default(autoincrement())
         stringField           String  @unique
@@ -36,12 +32,17 @@ describe("inputs", () => {
         optionalDateField     DateTime?
         jsonField             Json
         optionalJsonField     Json?
+        intArrayField         Int[]
+        stringArrayField      String[]
       }
     `;
 
     await generateCodeFromSchema(schema, { outputDirPath });
     const intFilterTSFile = await readGeneratedFile(
       "/resolvers/inputs/IntFilter.ts",
+    );
+    const intNullableListFilterTSFile = await readGeneratedFile(
+      "/resolvers/inputs/IntNullableListFilter.ts",
     );
     const nestedIntFilterTSFile = await readGeneratedFile(
       "/resolvers/inputs/NestedIntFilter.ts",
@@ -51,6 +52,9 @@ describe("inputs", () => {
     );
     const stringNullableFilterTSFile = await readGeneratedFile(
       "/resolvers/inputs/StringNullableFilter.ts",
+    );
+    const stringNullableListFilterTSFile = await readGeneratedFile(
+      "/resolvers/inputs/StringNullableListFilter.ts",
     );
     const nestedStringNullableFilterTSFile = await readGeneratedFile(
       "/resolvers/inputs/NestedStringNullableFilter.ts",
@@ -79,9 +83,15 @@ describe("inputs", () => {
     const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
 
     expect(intFilterTSFile).toMatchSnapshot("IntFilter");
+    expect(intNullableListFilterTSFile).toMatchSnapshot(
+      "IntNullableListFilter",
+    );
     expect(nestedIntFilterTSFile).toMatchSnapshot("NestedIntFilter");
     expect(stringFilterTSFile).toMatchSnapshot("StringFilter");
     expect(stringNullableFilterTSFile).toMatchSnapshot("StringNullableFilter");
+    expect(stringNullableListFilterTSFile).toMatchSnapshot(
+      "StringNullableListFilter",
+    );
     expect(nestedStringNullableFilterTSFile).toMatchSnapshot(
       "NestedStringNullableFilter",
     );
@@ -95,12 +105,8 @@ describe("inputs", () => {
     expect(indexTSFile).toMatchSnapshot("index");
   });
 
-  it("should properly generate input type classes for updating scalar fields", async () => {
+  it("should properly generate input type classes for creating models and scalar fields", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
       enum Color {
         RED
         GREEN
@@ -122,6 +128,82 @@ describe("inputs", () => {
         optionalJsonField     Json?
         enumField             Color
         optionalEnumField     Color?
+        intArrayField         Int[]
+        stringArrayField      String[]
+      }
+    `;
+
+    await generateCodeFromSchema(schema, { outputDirPath });
+    const sampleModelCreateInputTSFile = await readGeneratedFile(
+      "/resolvers/inputs/SampleModelCreateInput.ts",
+    );
+    const sampleModelCreateManyInputTSFile = await readGeneratedFile(
+      "/resolvers/inputs/SampleModelCreateManyInput.ts",
+    );
+    const sampleModelCreateintArrayFieldInputTSFile = await readGeneratedFile(
+      "/resolvers/inputs/SampleModelCreateintArrayFieldInput.ts",
+    );
+    const sampleModelCreateManyintArrayFieldInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/SampleModelCreateManyintArrayFieldInput.ts",
+      );
+    const sampleModelCreatestringArrayFieldInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/SampleModelCreatestringArrayFieldInput.ts",
+      );
+    const sampleModelCreateManystringArrayFieldInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/SampleModelCreateManystringArrayFieldInput.ts",
+      );
+
+    const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
+
+    expect(sampleModelCreateInputTSFile).toMatchSnapshot(
+      "SampleModelCreateInput",
+    );
+    expect(sampleModelCreateManyInputTSFile).toMatchSnapshot(
+      "SampleModelCreateManyInput",
+    );
+    expect(sampleModelCreateintArrayFieldInputTSFile).toMatchSnapshot(
+      "SampleModelCreateintArrayFieldInput",
+    );
+    expect(sampleModelCreateManyintArrayFieldInputTSFile).toMatchSnapshot(
+      "SampleModelCreateManyintArrayFieldInput",
+    );
+    expect(sampleModelCreatestringArrayFieldInputTSFile).toMatchSnapshot(
+      "SampleModelCreatestringArrayFieldInput",
+    );
+    expect(sampleModelCreateManystringArrayFieldInputTSFile).toMatchSnapshot(
+      "SampleModelCreateManystringArrayFieldInput",
+    );
+    expect(indexTSFile).toMatchSnapshot("index");
+  });
+
+  it("should properly generate input type classes for updating scalar fields", async () => {
+    const schema = /* prisma */ `
+      enum Color {
+        RED
+        GREEN
+        BLUE
+      }
+      model SampleModel {
+        intIdField            Int     @id @default(autoincrement())
+        stringField           String  @unique
+        optionalStringField   String?
+        intField              Int
+        optionalIntField      Int?
+        floatField            Float
+        optionalFloatField    Float?
+        booleanField          Boolean
+        optionalBooleanField  Boolean?
+        dateField             DateTime
+        optionalDateField     DateTime?
+        jsonField             Json
+        optionalJsonField     Json?
+        enumField             Color
+        optionalEnumField     Color?
+        intArrayField         Int[]
+        stringArrayField      String[]
       }
     `;
 
@@ -150,6 +232,13 @@ describe("inputs", () => {
     const enumColorFieldUpdateOperationsInputTSFile = await readGeneratedFile(
       "/resolvers/inputs/EnumColorFieldUpdateOperationsInput.ts",
     );
+    const sampleModelUpdateintArrayFieldInputTSFile = await readGeneratedFile(
+      "/resolvers/inputs/SampleModelUpdateintArrayFieldInput.ts",
+    );
+    const sampleModelUpdatestringArrayFieldInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/SampleModelUpdatestringArrayFieldInput.ts",
+      );
 
     const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
 
@@ -177,15 +266,17 @@ describe("inputs", () => {
     expect(enumColorFieldUpdateOperationsInputTSFile).toMatchSnapshot(
       "EnumColorFieldUpdateOperationsInput",
     );
+    expect(sampleModelUpdateintArrayFieldInputTSFile).toMatchSnapshot(
+      "SampleModelUpdateintArrayFieldInput",
+    );
+    expect(sampleModelUpdatestringArrayFieldInputTSFile).toMatchSnapshot(
+      "SampleModelUpdatestringArrayFieldInput",
+    );
     expect(indexTSFile).toMatchSnapshot("index");
   });
 
   it("should properly generate input type classes for filtering models by fields", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
       model SampleModel {
         intIdField          Int     @id @default(autoincrement())
         stringField         String  @unique
@@ -251,11 +342,6 @@ describe("inputs", () => {
 
   it("should properly generate input type classes for filtering models by many to many relation fields", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model FirstModel {
         idField            Int            @id @default(autoincrement())
         uniqueStringField  String         @unique
@@ -300,11 +386,6 @@ describe("inputs", () => {
 
   it("should properly generate input type classes for filtering models by one to many relation fields", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model FirstModel {
         idField            Int            @id @default(autoincrement())
         uniqueStringField  String         @unique
@@ -380,11 +461,6 @@ describe("inputs", () => {
 
   it("should properly generate input type class for filtering by enums values", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       enum Color {
         RED
         GREEN
@@ -415,11 +491,6 @@ describe("inputs", () => {
 
   it("should properly generate input type classes for model with composite unique index", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model Movie {
         directorFirstName String
         directorLastName  String
@@ -450,9 +521,10 @@ describe("inputs", () => {
     const directorOrderByInputTSFile = await readGeneratedFile(
       "/resolvers/inputs/DirectorOrderByInput.ts",
     );
-    const directorFirstNameLastNameCompoundUniqueInputTSFile = await readGeneratedFile(
-      "/resolvers/inputs/DirectorFirstNameLastNameCompoundUniqueInput.ts",
-    );
+    const directorFirstNameLastNameCompoundUniqueInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/DirectorFirstNameLastNameCompoundUniqueInput.ts",
+      );
     const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
 
     expect(directorWhereInputTSFile).toMatchSnapshot("DirectorWhereInput");
@@ -468,11 +540,6 @@ describe("inputs", () => {
 
   it("should properly generate input type classes for model with id keys with relation", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model Movie {
         directorFirstName String
         directorLastName  String
@@ -506,9 +573,10 @@ describe("inputs", () => {
     const movieOrderByInputTSFile = await readGeneratedFile(
       "/resolvers/inputs/MovieOrderByInput.ts",
     );
-    const movieDirectorFirstNameDirectorLastNameTitleCompoundUniqueInputTSFile = await readGeneratedFile(
-      "/resolvers/inputs/MovieDirectorFirstNameDirectorLastNameTitleCompoundUniqueInput.ts",
-    );
+    const movieDirectorFirstNameDirectorLastNameTitleCompoundUniqueInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/MovieDirectorFirstNameDirectorLastNameTitleCompoundUniqueInput.ts",
+      );
     const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
 
     expect(movieWhereInputTSFile).toMatchSnapshot("MovieWhereInput");
@@ -529,11 +597,6 @@ describe("inputs", () => {
 
   it("should properly generate input type classes for connectOrCreate", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model User {
         id          Int     @id @default(autoincrement())
         name        String
@@ -548,15 +611,18 @@ describe("inputs", () => {
     `;
 
     await generateCodeFromSchema(schema, { outputDirPath });
-    const userUpdateOneRequiredWithoutPostsFieldInputTSFile = await readGeneratedFile(
-      "/resolvers/inputs/UserUpdateOneRequiredWithoutPostsFieldInput.ts",
-    );
-    const userCreateOrConnectWithoutPostsFieldInputTSFile = await readGeneratedFile(
-      "/resolvers/inputs/UserCreateOrConnectWithoutPostsFieldInput.ts",
-    );
-    const userCreateNestedOneWithoutPostsFieldInputTSFile = await readGeneratedFile(
-      "/resolvers/inputs/UserCreateNestedOneWithoutPostsFieldInput.ts",
-    );
+    const userUpdateOneRequiredWithoutPostsFieldInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/UserUpdateOneRequiredWithoutPostsFieldInput.ts",
+      );
+    const userCreateOrConnectWithoutPostsFieldInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/UserCreateOrConnectWithoutPostsFieldInput.ts",
+      );
+    const userCreateNestedOneWithoutPostsFieldInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/UserCreateNestedOneWithoutPostsFieldInput.ts",
+      );
 
     expect(userUpdateOneRequiredWithoutPostsFieldInputTSFile).toMatchSnapshot(
       "UserUpdateOneRequiredWithoutPostsFieldInput",
@@ -571,16 +637,11 @@ describe("inputs", () => {
 
   it("should properly generate input type scalar filters classes for model with native types", async () => {
     const schema = /* prisma */ `
-      datasource postgres {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model NativeTypeModel {
-        id      Int      @id @default(autoincrement()) @postgres.Integer
-        bigInt  BigInt?  @postgres.BigInt
-        byteA   Bytes?   @postgres.ByteA
-        decimal Decimal? @postgres.Decimal
+        id      Int      @id @default(autoincrement()) @db.Integer
+        bigInt  BigInt?  @db.BigInt
+        byteA   Bytes?   @db.ByteA
+        decimal Decimal? @db.Decimal
       }
     `;
 
@@ -588,70 +649,75 @@ describe("inputs", () => {
     const bigIntNullableFilterTSFile = await readGeneratedFile(
       "/resolvers/inputs/BigIntNullableFilter.ts",
     );
-    // const bigIntNullableWithAggregatesFilterTSFile = await readGeneratedFile(
-    //   "/resolvers/inputs/BigIntNullableWithAggregatesFilter.ts",
-    // );
+    const bigIntNullableWithAggregatesFilterTSFile = await readGeneratedFile(
+      "/resolvers/inputs/BigIntNullableWithAggregatesFilter.ts",
+    );
     const bytesNullableFilterTSFile = await readGeneratedFile(
       "/resolvers/inputs/BytesNullableFilter.ts",
     );
-    // const bytesNullableWithAggregatesFilterTSFile = await readGeneratedFile(
-    //   "/resolvers/inputs/BytesNullableWithAggregatesFilter.ts",
-    // );
+    const bytesNullableWithAggregatesFilterTSFile = await readGeneratedFile(
+      "/resolvers/inputs/BytesNullableWithAggregatesFilter.ts",
+    );
     const decimalNullableFilterTSFile = await readGeneratedFile(
       "/resolvers/inputs/DecimalNullableFilter.ts",
     );
-    // const decimalNullableWithAggregatesFilterTSFile = await readGeneratedFile(
-    //   "/resolvers/inputs/DecimalNullableWithAggregatesFilter.ts",
-    // );
+    const decimalNullableWithAggregatesFilterTSFile = await readGeneratedFile(
+      "/resolvers/inputs/DecimalNullableWithAggregatesFilter.ts",
+    );
     const nestedBytesNullableFilterTSFile = await readGeneratedFile(
       "/resolvers/inputs/NestedBytesNullableFilter.ts",
     );
-    // const nestedBytesNullableWithAggregatesFilterTSFile = await readGeneratedFile(
-    //   "/resolvers/inputs/NestedBytesNullableWithAggregatesFilter.ts",
-    // );
+    const nestedBytesNullableWithAggregatesFilterTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/NestedBytesNullableWithAggregatesFilter.ts",
+      );
     const nestedDecimalNullableFilterTSFile = await readGeneratedFile(
       "/resolvers/inputs/NestedDecimalNullableFilter.ts",
     );
-    // const nestedDecimalNullableWithAggregatesFilterTSFile = await readGeneratedFile(
-    //   "/resolvers/inputs/NestedDecimalNullableWithAggregatesFilter.ts",
-    // );
-    const nullableBigIntFieldUpdateOperationsInputTSFile = await readGeneratedFile(
-      "/resolvers/inputs/NullableBigIntFieldUpdateOperationsInput.ts",
-    );
-    const nullableBytesFieldUpdateOperationsInputTSFile = await readGeneratedFile(
-      "/resolvers/inputs/NullableBytesFieldUpdateOperationsInput.ts",
-    );
-    const nullableDecimalFieldUpdateOperationsInputTSFile = await readGeneratedFile(
-      "/resolvers/inputs/NullableDecimalFieldUpdateOperationsInput.ts",
-    );
+    const nestedDecimalNullableWithAggregatesFilterTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/NestedDecimalNullableWithAggregatesFilter.ts",
+      );
+    const nullableBigIntFieldUpdateOperationsInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/NullableBigIntFieldUpdateOperationsInput.ts",
+      );
+    const nullableBytesFieldUpdateOperationsInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/NullableBytesFieldUpdateOperationsInput.ts",
+      );
+    const nullableDecimalFieldUpdateOperationsInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/NullableDecimalFieldUpdateOperationsInput.ts",
+      );
     const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
 
     expect(bigIntNullableFilterTSFile).toMatchSnapshot("BigIntNullableFilter");
-    // expect(bigIntNullableWithAggregatesFilterTSFile).toMatchSnapshot(
-    //   "BigIntNullableWithAggregatesFilter",
-    // );
+    expect(bigIntNullableWithAggregatesFilterTSFile).toMatchSnapshot(
+      "BigIntNullableWithAggregatesFilter",
+    );
     expect(bytesNullableFilterTSFile).toMatchSnapshot("BytesNullableFilter");
-    // expect(bytesNullableWithAggregatesFilterTSFile).toMatchSnapshot(
-    //   "BytesNullableWithAggregatesFilter",
-    // );
+    expect(bytesNullableWithAggregatesFilterTSFile).toMatchSnapshot(
+      "BytesNullableWithAggregatesFilter",
+    );
     expect(decimalNullableFilterTSFile).toMatchSnapshot(
       "DecimalNullableFilter",
     );
-    // expect(decimalNullableWithAggregatesFilterTSFile).toMatchSnapshot(
-    //   "DecimalNullableWithAggregatesFilter",
-    // );
+    expect(decimalNullableWithAggregatesFilterTSFile).toMatchSnapshot(
+      "DecimalNullableWithAggregatesFilter",
+    );
     expect(nestedBytesNullableFilterTSFile).toMatchSnapshot(
       "NestedBytesNullableFilter",
     );
-    // expect(nestedBytesNullableWithAggregatesFilterTSFile).toMatchSnapshot(
-    //   "NestedBytesNullableWithAggregatesFilter",
-    // );
+    expect(nestedBytesNullableWithAggregatesFilterTSFile).toMatchSnapshot(
+      "NestedBytesNullableWithAggregatesFilter",
+    );
     expect(nestedDecimalNullableFilterTSFile).toMatchSnapshot(
       "NestedDecimalNullableFilter",
     );
-    // expect(nestedDecimalNullableWithAggregatesFilterTSFile).toMatchSnapshot(
-    //   "NestedDecimalNullableWithAggregatesFilter",
-    // );
+    expect(nestedDecimalNullableWithAggregatesFilterTSFile).toMatchSnapshot(
+      "NestedDecimalNullableWithAggregatesFilter",
+    );
     expect(nullableBigIntFieldUpdateOperationsInputTSFile).toMatchSnapshot(
       "NullableBigIntFieldUpdateOperationsInput",
     );
@@ -664,18 +730,92 @@ describe("inputs", () => {
     expect(indexTSFile).toMatchSnapshot("index");
   });
 
+  it("should generate proper WithAggregatesFilter for scalars", async () => {
+    const schema = /* prisma */ `
+      model Sample {
+        idField       Int     @id @default(autoincrement())
+        stringField   String
+        floatField    Float
+        intField      Int
+        booleanField  Boolean
+        dateField     DateTime
+        jsonField     Json
+      }
+    `;
+
+    await generateCodeFromSchema(schema, { outputDirPath });
+    // TODO: add nested filter tests
+    const stringWithAggregatesFilterTSFile = await readGeneratedFile(
+      "/resolvers/inputs/StringWithAggregatesFilter.ts",
+    );
+    const floatWithAggregatesFilterTSFile = await readGeneratedFile(
+      "/resolvers/inputs/FloatWithAggregatesFilter.ts",
+    );
+    const intWithAggregatesFilterTSFile = await readGeneratedFile(
+      "/resolvers/inputs/IntWithAggregatesFilter.ts",
+    );
+    const boolWithAggregatesFilterTSFile = await readGeneratedFile(
+      "/resolvers/inputs/BoolWithAggregatesFilter.ts",
+    );
+    const dateTimeWithAggregatesFilterTSFile = await readGeneratedFile(
+      "/resolvers/inputs/DateTimeWithAggregatesFilter.ts",
+    );
+    const jsonWithAggregatesFilterTSFile = await readGeneratedFile(
+      "/resolvers/inputs/JsonWithAggregatesFilter.ts",
+    );
+    const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
+
+    expect(stringWithAggregatesFilterTSFile).toMatchSnapshot(
+      "StringWithAggregatesFilter",
+    );
+    expect(floatWithAggregatesFilterTSFile).toMatchSnapshot(
+      "FloatWithAggregatesFilter",
+    );
+    expect(intWithAggregatesFilterTSFile).toMatchSnapshot(
+      "IntWithAggregatesFilter",
+    );
+    expect(boolWithAggregatesFilterTSFile).toMatchSnapshot(
+      "BoolWithAggregatesFilter",
+    );
+    expect(dateTimeWithAggregatesFilterTSFile).toMatchSnapshot(
+      "DateTimeWithAggregatesFilter",
+    );
+    expect(jsonWithAggregatesFilterTSFile).toMatchSnapshot(
+      "JsonWithAggregatesFilter",
+    );
+    expect(indexTSFile).toMatchSnapshot("index");
+  });
+
+  it("should generate proper ScalarWhereWithAggregatesInput for model", async () => {
+    const schema = /* prisma */ `
+      model Sample {
+        idField       Int     @id @default(autoincrement())
+        stringField   String
+        floatField    Float
+        intField      Int
+        booleanField  Boolean
+        dateField     DateTime
+        jsonField     Json
+      }
+    `;
+
+    await generateCodeFromSchema(schema, { outputDirPath });
+    const sampleScalarWhereWithAggregatesInputTSFile = await readGeneratedFile(
+      "/resolvers/inputs/SampleScalarWhereWithAggregatesInput.ts",
+    );
+
+    expect(sampleScalarWhereWithAggregatesInputTSFile).toMatchSnapshot(
+      "SampleScalarWhereWithAggregatesInput",
+    );
+  });
+
   it("should properly generate input type classes for model with native types", async () => {
     const schema = /* prisma */ `
-      datasource postgres {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model NativeTypeModel {
-        id      Int      @id @default(autoincrement()) @postgres.Integer
-        bigInt  BigInt?  @postgres.BigInt
-        byteA   Bytes?   @postgres.ByteA
-        decimal Decimal? @postgres.Decimal
+        id      Int      @id @default(autoincrement()) @db.Integer
+        bigInt  BigInt?  @db.BigInt
+        byteA   Bytes?   @db.ByteA
+        decimal Decimal? @db.Decimal
       }
     `;
 
@@ -689,9 +829,10 @@ describe("inputs", () => {
     const nativeTypeModelUpdateInputTSFile = await readGeneratedFile(
       "/resolvers/inputs/NativeTypeModelUpdateInput.ts",
     );
-    const nativeTypeModelUpdateManyMutationInputTSFile = await readGeneratedFile(
-      "/resolvers/inputs/NativeTypeModelUpdateManyMutationInput.ts",
-    );
+    const nativeTypeModelUpdateManyMutationInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/NativeTypeModelUpdateManyMutationInput.ts",
+      );
     const nativeTypeModelWhereInputTSFile = await readGeneratedFile(
       "/resolvers/inputs/NativeTypeModelWhereInput.ts",
     );
@@ -721,14 +862,58 @@ describe("inputs", () => {
     expect(indexTSFile).toMatchSnapshot("index");
   });
 
+  it("should properly generate input type classes for inserting many entities", async () => {
+    const schema = /* prisma */ `
+      model FirstModel {
+        idField            Int            @id @default(autoincrement())
+        uniqueStringField  String         @unique
+        floatField         Float
+        secondModelsField  SecondModel[]
+      }
+      model SecondModel {
+        idField            Int          @id @default(autoincrement())
+        uniqueStringField  String       @unique
+        floatField         Float
+        firstModelFieldId  Int
+        firstModelField    FirstModel   @relation(fields: [firstModelFieldId], references: [idField])
+      }
+    `;
+
+    await generateCodeFromSchema(schema, { outputDirPath });
+    const firstModelCreateManyInputTSFile = await readGeneratedFile(
+      "/resolvers/inputs/FirstModelCreateManyInput.ts",
+    );
+    const secondModelCreateManyInputTSFile = await readGeneratedFile(
+      "/resolvers/inputs/SecondModelCreateManyInput.ts",
+    );
+    const secondModelCreateManyFirstModelFieldInputTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/SecondModelCreateManyFirstModelFieldInput.ts",
+      );
+    const secondModelCreateManyFirstModelFieldInputEnvelopeTSFile =
+      await readGeneratedFile(
+        "/resolvers/inputs/SecondModelCreateManyFirstModelFieldInputEnvelope.ts",
+      );
+    const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
+
+    expect(firstModelCreateManyInputTSFile).toMatchSnapshot(
+      "FirstModelCreateManyInput",
+    );
+    expect(secondModelCreateManyInputTSFile).toMatchSnapshot(
+      "SecondModelCreateManyInput",
+    );
+    expect(secondModelCreateManyFirstModelFieldInputTSFile).toMatchSnapshot(
+      "SecondModelCreateManyFirstModelFieldInput",
+    );
+    expect(
+      secondModelCreateManyFirstModelFieldInputEnvelopeTSFile,
+    ).toMatchSnapshot("SecondModelCreateManyFirstModelFieldInputEnvelope");
+    expect(indexTSFile).toMatchSnapshot("index");
+  });
+
   describe("when model is renamed", () => {
     it("should properly generate input type classes", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         /// @@TypeGraphQL.type(name: "Example")
         model SampleModel {
           intIdField   Int        @id @default(autoincrement())
@@ -769,11 +954,6 @@ describe("inputs", () => {
 
     it("should properly generate input type classes for filtering models by many to many relation fields", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         /// @@TypeGraphQL.type(name: "RenamedFirstModel")
         model FirstModel {
           idField            Int            @id @default(autoincrement())
@@ -822,11 +1002,6 @@ describe("inputs", () => {
 
     it("should properly generate input type classes for filtering models by one to many relation fields", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         /// @@TypeGraphQL.type(name: "RenamedFirstModel")
         model FirstModel {
           idField            Int            @id @default(autoincrement())
@@ -869,9 +1044,10 @@ describe("inputs", () => {
       const renamedSecondModelOrderByInputTSFile = await readGeneratedFile(
         "/resolvers/inputs/RenamedSecondModelOrderByInput.ts",
       );
-      const renamedSecondModelListRelationFilterTSFile = await readGeneratedFile(
-        "/resolvers/inputs/RenamedSecondModelListRelationFilter.ts",
-      );
+      const renamedSecondModelListRelationFilterTSFile =
+        await readGeneratedFile(
+          "/resolvers/inputs/RenamedSecondModelListRelationFilter.ts",
+        );
       const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
 
       expect(renamedFirstModelWhereInputTSFile).toMatchSnapshot(
@@ -908,11 +1084,6 @@ describe("inputs", () => {
   describe("when model field is renamed", () => {
     it("should properly generate input type classes", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         model Sample {
           idField         Int     @id @default(autoincrement())
           /// @TypeGraphQL.field(name: "mappedFieldName")
@@ -938,11 +1109,6 @@ describe("inputs", () => {
   describe("when prisma client is generated into node_modules", () => {
     it("should properly generate prisma client imports in input type class files", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         model Sample {
           idField         Int     @id @default(autoincrement())
           modelFieldName  String
@@ -963,93 +1129,11 @@ describe("inputs", () => {
     });
   });
 
-  describe("when preview feature `groupBy` is enabled", () => {
-    beforeEach(async () => {
-      const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
-        model Sample {
-          idField       Int     @id @default(autoincrement())
-          stringField   String
-          floatField    Float
-          intField      Int
-          booleanField  Boolean
-          dateField     DateTime
-          jsonField     Json
-        }
-      `;
-
-      await generateCodeFromSchema(schema, {
-        outputDirPath,
-        enabledPreviewFeatures: ["groupBy"],
-      });
-    });
-
-    it("should generate proper WithAggregatesFilter for scalars", async () => {
-      // TODO: add nested filter tests
-
-      const stringWithAggregatesFilterTSFile = await readGeneratedFile(
-        "/resolvers/inputs/StringWithAggregatesFilter.ts",
-      );
-      const floatWithAggregatesFilterTSFile = await readGeneratedFile(
-        "/resolvers/inputs/FloatWithAggregatesFilter.ts",
-      );
-      const intWithAggregatesFilterTSFile = await readGeneratedFile(
-        "/resolvers/inputs/IntWithAggregatesFilter.ts",
-      );
-      const boolWithAggregatesFilterTSFile = await readGeneratedFile(
-        "/resolvers/inputs/BoolWithAggregatesFilter.ts",
-      );
-      const dateTimeWithAggregatesFilterTSFile = await readGeneratedFile(
-        "/resolvers/inputs/DateTimeWithAggregatesFilter.ts",
-      );
-      const jsonWithAggregatesFilterTSFile = await readGeneratedFile(
-        "/resolvers/inputs/JsonWithAggregatesFilter.ts",
-      );
-      const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
-
-      expect(stringWithAggregatesFilterTSFile).toMatchSnapshot(
-        "StringWithAggregatesFilter",
-      );
-      expect(floatWithAggregatesFilterTSFile).toMatchSnapshot(
-        "FloatWithAggregatesFilter",
-      );
-      expect(intWithAggregatesFilterTSFile).toMatchSnapshot(
-        "IntWithAggregatesFilter",
-      );
-      expect(boolWithAggregatesFilterTSFile).toMatchSnapshot(
-        "BoolWithAggregatesFilter",
-      );
-      expect(dateTimeWithAggregatesFilterTSFile).toMatchSnapshot(
-        "DateTimeWithAggregatesFilter",
-      );
-      expect(jsonWithAggregatesFilterTSFile).toMatchSnapshot(
-        "JsonWithAggregatesFilter",
-      );
-      expect(indexTSFile).toMatchSnapshot("index");
-    });
-
-    it("should generate proper ScalarWhereWithAggregatesInput for model", async () => {
-      const sampleScalarWhereWithAggregatesInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/SampleScalarWhereWithAggregatesInput.ts",
-      );
-
-      expect(sampleScalarWhereWithAggregatesInputTSFile).toMatchSnapshot(
-        "SampleScalarWhereWithAggregatesInput",
-      );
-    });
-  });
+  describe("when preview feature `groupBy` is enabled", () => {});
 
   describe("when useUncheckedScalarInputs mode is enabled", () => {
     it("should properly generate input type classes for filtering models by one to many relation fields", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
         model FirstModel {
           idField            Int            @id @default(autoincrement())
           uniqueStringField  String         @unique
@@ -1072,36 +1156,44 @@ describe("inputs", () => {
       const firstModelUncheckedCreateInputTSFile = await readGeneratedFile(
         "/resolvers/inputs/FirstModelUncheckedCreateInput.ts",
       );
-      const firstModelUncheckedCreateWithoutSecondModelsFieldInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/FirstModelUncheckedCreateWithoutSecondModelsFieldInput.ts",
-      );
+      const firstModelUncheckedCreateWithoutSecondModelsFieldInputTSFile =
+        await readGeneratedFile(
+          "/resolvers/inputs/FirstModelUncheckedCreateWithoutSecondModelsFieldInput.ts",
+        );
       const firstModelUncheckedUpdateInputTSFile = await readGeneratedFile(
         "/resolvers/inputs/FirstModelUncheckedUpdateInput.ts",
       );
       const firstModelUncheckedUpdateManyInputTSFile = await readGeneratedFile(
         "/resolvers/inputs/FirstModelUncheckedUpdateManyInput.ts",
       );
-      const firstModelUncheckedUpdateWithoutSecondModelsFieldInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/FirstModelUncheckedUpdateWithoutSecondModelsFieldInput.ts",
-      );
-      const firstModelCreateNestedOneWithoutSecondModelsFieldInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/FirstModelCreateNestedOneWithoutSecondModelsFieldInput.ts",
-      );
-      const firstModelCreateOrConnectWithoutSecondModelsFieldInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/FirstModelCreateOrConnectWithoutSecondModelsFieldInput.ts",
-      );
-      const firstModelCreateWithoutSecondModelsFieldInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/FirstModelCreateWithoutSecondModelsFieldInput.ts",
-      );
-      const firstModelUpdateOneRequiredWithoutSecondModelsFieldInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/FirstModelUpdateOneRequiredWithoutSecondModelsFieldInput.ts",
-      );
-      const firstModelUpdateWithoutSecondModelsFieldInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/FirstModelUpdateWithoutSecondModelsFieldInput.ts",
-      );
-      const firstModelUpsertWithoutSecondModelsFieldInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/FirstModelUpsertWithoutSecondModelsFieldInput.ts",
-      );
+      const firstModelUncheckedUpdateWithoutSecondModelsFieldInputTSFile =
+        await readGeneratedFile(
+          "/resolvers/inputs/FirstModelUncheckedUpdateWithoutSecondModelsFieldInput.ts",
+        );
+      const firstModelCreateNestedOneWithoutSecondModelsFieldInputTSFile =
+        await readGeneratedFile(
+          "/resolvers/inputs/FirstModelCreateNestedOneWithoutSecondModelsFieldInput.ts",
+        );
+      const firstModelCreateOrConnectWithoutSecondModelsFieldInputTSFile =
+        await readGeneratedFile(
+          "/resolvers/inputs/FirstModelCreateOrConnectWithoutSecondModelsFieldInput.ts",
+        );
+      const firstModelCreateWithoutSecondModelsFieldInputTSFile =
+        await readGeneratedFile(
+          "/resolvers/inputs/FirstModelCreateWithoutSecondModelsFieldInput.ts",
+        );
+      const firstModelUpdateOneRequiredWithoutSecondModelsFieldInputTSFile =
+        await readGeneratedFile(
+          "/resolvers/inputs/FirstModelUpdateOneRequiredWithoutSecondModelsFieldInput.ts",
+        );
+      const firstModelUpdateWithoutSecondModelsFieldInputTSFile =
+        await readGeneratedFile(
+          "/resolvers/inputs/FirstModelUpdateWithoutSecondModelsFieldInput.ts",
+        );
+      const firstModelUpsertWithoutSecondModelsFieldInputTSFile =
+        await readGeneratedFile(
+          "/resolvers/inputs/FirstModelUpsertWithoutSecondModelsFieldInput.ts",
+        );
       const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
 
       expect(firstModelUncheckedCreateInputTSFile).toMatchSnapshot(
@@ -1151,70 +1243,9 @@ describe("inputs", () => {
     });
   });
 
-  describe("when `createMany` preview feature is enabled", () => {
-    it("should properly generate input type classes for inserting many entities", async () => {
-      const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-        model FirstModel {
-          idField            Int            @id @default(autoincrement())
-          uniqueStringField  String         @unique
-          floatField         Float
-          secondModelsField  SecondModel[]
-        }
-        model SecondModel {
-          idField            Int          @id @default(autoincrement())
-          uniqueStringField  String       @unique
-          floatField         Float
-          firstModelFieldId  Int
-          firstModelField    FirstModel   @relation(fields: [firstModelFieldId], references: [idField])
-        }
-      `;
-
-      await generateCodeFromSchema(schema, {
-        outputDirPath,
-        enabledPreviewFeatures: ["createMany"],
-      });
-      const firstModelCreateManyInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/FirstModelCreateManyInput.ts",
-      );
-      const secondModelCreateManyInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/SecondModelCreateManyInput.ts",
-      );
-      const secondModelCreateManyFirstModelFieldInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/SecondModelCreateManyFirstModelFieldInput.ts",
-      );
-      const secondModelCreateManyFirstModelFieldInputEnvelopeTSFile = await readGeneratedFile(
-        "/resolvers/inputs/SecondModelCreateManyFirstModelFieldInputEnvelope.ts",
-      );
-      const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
-
-      expect(firstModelCreateManyInputTSFile).toMatchSnapshot(
-        "FirstModelCreateManyInput",
-      );
-      expect(secondModelCreateManyInputTSFile).toMatchSnapshot(
-        "SecondModelCreateManyInput",
-      );
-      expect(secondModelCreateManyFirstModelFieldInputTSFile).toMatchSnapshot(
-        "SecondModelCreateManyFirstModelFieldInput",
-      );
-      expect(
-        secondModelCreateManyFirstModelFieldInputEnvelopeTSFile,
-      ).toMatchSnapshot("SecondModelCreateManyFirstModelFieldInputEnvelope");
-      expect(indexTSFile).toMatchSnapshot("index");
-    });
-  });
-
   describe("when `orderByRelation` preview feature is enabled", () => {
     it("should properly generate input type classes for sorting by many-to-many relation fields", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         model FirstModel {
           idField            Int            @id @default(autoincrement())
           uniqueStringField  String         @unique
@@ -1231,32 +1262,28 @@ describe("inputs", () => {
 
       await generateCodeFromSchema(schema, {
         outputDirPath,
-        enabledPreviewFeatures: ["orderByRelation"],
+        previewFeatures: ["orderByRelation"],
       });
       const firstModelOrderByWithRelationInputTSFile = await readGeneratedFile(
         "/resolvers/inputs/FirstModelOrderByWithRelationInput.ts",
       );
-      const secondModelOrderByAggregateInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/SecondModelOrderByAggregateInput.ts",
-      );
+      const secondModelOrderByRelationAggregateInputTSFile =
+        await readGeneratedFile(
+          "/resolvers/inputs/SecondModelOrderByRelationAggregateInput.ts",
+        );
       const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
 
       expect(firstModelOrderByWithRelationInputTSFile).toMatchSnapshot(
         "FirstModelOrderByWithRelationInput",
       );
-      expect(secondModelOrderByAggregateInputTSFile).toMatchSnapshot(
-        "SecondModelOrderByAggregateInput",
+      expect(secondModelOrderByRelationAggregateInputTSFile).toMatchSnapshot(
+        "SecondModelOrderByRelationAggregateInput",
       );
       expect(indexTSFile).toMatchSnapshot("index");
     });
 
     it("should properly generate input type classes for sorting by one-to-many relation fields", async () => {
       const schema = /* prisma */ `
-        datasource db {
-          provider = "postgresql"
-          url      = env("DATABASE_URL")
-        }
-
         model FirstModel {
           idField            Int            @id @default(autoincrement())
           uniqueStringField  String         @unique
@@ -1274,14 +1301,15 @@ describe("inputs", () => {
 
       await generateCodeFromSchema(schema, {
         outputDirPath,
-        enabledPreviewFeatures: ["orderByRelation"],
+        previewFeatures: ["orderByRelation"],
       });
       const firstModelOrderByWithRelationInputTSFile = await readGeneratedFile(
         "/resolvers/inputs/FirstModelOrderByWithRelationInput.ts",
       );
-      const secondModelOrderByAggregateInputTSFile = await readGeneratedFile(
-        "/resolvers/inputs/SecondModelOrderByAggregateInput.ts",
-      );
+      const secondModelOrderByRelationAggregateInputTSFile =
+        await readGeneratedFile(
+          "/resolvers/inputs/SecondModelOrderByRelationAggregateInput.ts",
+        );
       const secondModelOrderByWithRelationInputTSFile = await readGeneratedFile(
         "/resolvers/inputs/SecondModelOrderByWithRelationInput.ts",
       );
@@ -1290,11 +1318,65 @@ describe("inputs", () => {
       expect(firstModelOrderByWithRelationInputTSFile).toMatchSnapshot(
         "FirstModelOrderByWithRelationInput",
       );
-      expect(secondModelOrderByAggregateInputTSFile).toMatchSnapshot(
-        "SecondModelOrderByAggregateInput",
+      expect(secondModelOrderByRelationAggregateInputTSFile).toMatchSnapshot(
+        "SecondModelOrderByRelationAggregateInput",
       );
       expect(secondModelOrderByWithRelationInputTSFile).toMatchSnapshot(
         "SecondModelOrderByWithRelationInput",
+      );
+      expect(indexTSFile).toMatchSnapshot("index");
+    });
+  });
+
+  describe("when `orderByAggregateGroup` preview feature is enabled", () => {
+    it("should properly generate input type classes for sorting by many-to-many relation fields", async () => {
+      const schema = /* prisma */ `
+        model Sample {
+          idField       Int     @id @default(autoincrement())
+          stringField   String
+          floatField    Float
+          intField      Int
+          booleanField  Boolean
+          dateField     DateTime
+          jsonField     Json
+        }
+      `;
+
+      await generateCodeFromSchema(schema, {
+        outputDirPath,
+        previewFeatures: ["orderByAggregateGroup"],
+      });
+      const sampleOrderByWithAggregationInputTSFile = await readGeneratedFile(
+        "/resolvers/inputs/SampleOrderByWithAggregationInput.ts",
+      );
+      const sampleMaxOrderByAggregateInputTSFile = await readGeneratedFile(
+        "/resolvers/inputs/SampleMaxOrderByAggregateInput.ts",
+      );
+      const sampleMinOrderByAggregateInputTSFile = await readGeneratedFile(
+        "/resolvers/inputs/SampleMinOrderByAggregateInput.ts",
+      );
+      const sampleAvgOrderByAggregateInputTSFile = await readGeneratedFile(
+        "/resolvers/inputs/SampleAvgOrderByAggregateInput.ts",
+      );
+      const sampleCountOrderByAggregateInputTSFile = await readGeneratedFile(
+        "/resolvers/inputs/SampleCountOrderByAggregateInput.ts",
+      );
+      const indexTSFile = await readGeneratedFile("/resolvers/inputs/index.ts");
+
+      expect(sampleOrderByWithAggregationInputTSFile).toMatchSnapshot(
+        "SampleOrderByWithAggregationInput",
+      );
+      expect(sampleMaxOrderByAggregateInputTSFile).toMatchSnapshot(
+        "SampleMaxOrderByAggregateInput",
+      );
+      expect(sampleMinOrderByAggregateInputTSFile).toMatchSnapshot(
+        "SampleMinOrderByAggregateInput",
+      );
+      expect(sampleAvgOrderByAggregateInputTSFile).toMatchSnapshot(
+        "SampleAvgOrderByAggregateInput",
+      );
+      expect(sampleCountOrderByAggregateInputTSFile).toMatchSnapshot(
+        "SampleCountOrderByAggregateInput",
       );
       expect(indexTSFile).toMatchSnapshot("index");
     });

@@ -4,6 +4,7 @@ import { Prisma } from "../../client";
 import { DecimalJSScalar } from "../scalars";
 import { Post } from "../models/Post";
 import { Role } from "../enums/Role";
+import { ClientCount } from "../resolvers/outputs/ClientCount";
 
 /** User model doc */
 @TypeGraphQL.ObjectType({
@@ -46,6 +47,21 @@ export class Client {
   role!: "USER" | "ADMIN";
 
   editorPosts?: Post[];
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: false
+  })
+  grades!: number[];
+
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: false
+  })
+  aliases!: string[];
+
+  @TypeGraphQL.Field(_type => ClientCount, {
+    nullable: true
+  })
+  _count?: ClientCount | null;
 
   /** renamed field doc */
   @TypeGraphQL.Field(_type => String, {

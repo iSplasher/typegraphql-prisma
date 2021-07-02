@@ -13,14 +13,14 @@ export class ClientCountAggregate {
   id!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
+    nullable: false
   })
-  email!: number | null;
+  email!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
+    nullable: false
   })
-  name!: number | null;
+  name!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
@@ -38,9 +38,19 @@ export class ClientCountAggregate {
   amount!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
+    nullable: false
   })
-  role!: number | null;
+  role!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  grades!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  aliases!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false

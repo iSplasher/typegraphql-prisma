@@ -18,23 +18,22 @@ describe("outputs", () => {
 
   it("should properly generate output type classes", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model Sample {
-        intIdField    Int       @id @default(autoincrement())
-        stringField   String
-        floatField    Float
-        booleanField  Boolean
-        dateField     DateTime
+        intIdField     Int       @id @default(autoincrement())
+        stringField    String
+        floatField     Float
+        booleanField   Boolean
+        dateField      DateTime
+        intArrayField  Int[]
       }
     `;
 
     await generateCodeFromSchema(schema, { outputDirPath });
     const aggregateSampleTSFile = await readGeneratedFile(
       "/resolvers/outputs/AggregateSample.ts",
+    );
+    const countAggregateTSFile = await readGeneratedFile(
+      "/resolvers/outputs/SampleCountAggregate.ts",
     );
     const avgAggregateTSFile = await readGeneratedFile(
       "/resolvers/outputs/SampleAvgAggregate.ts",
@@ -51,26 +50,26 @@ describe("outputs", () => {
     const affectedRowsOutputTSFile = await readGeneratedFile(
       "/resolvers/outputs/AffectedRowsOutput.ts",
     );
+    const sampleGroupByTSFile = await readGeneratedFile(
+      "/resolvers/outputs/SampleGroupBy.ts",
+    );
     const outputsIndexTSFile = await readGeneratedFile(
       "/resolvers/outputs/index.ts",
     );
 
     expect(aggregateSampleTSFile).toMatchSnapshot("AggregateSample");
+    expect(countAggregateTSFile).toMatchSnapshot("SampleCountAggregate");
     expect(avgAggregateTSFile).toMatchSnapshot("SampleAvgAggregate");
     expect(sumAggregateTSFile).toMatchSnapshot("SampleSumAggregate");
     expect(minAggregateTSFile).toMatchSnapshot("SampleMinAggregate");
     expect(maxAggregateTSFile).toMatchSnapshot("SampleMaxAggregate");
     expect(affectedRowsOutputTSFile).toMatchSnapshot("AffectedRowsOutput");
+    expect(sampleGroupByTSFile).toMatchSnapshot("SampleGroupBy");
     expect(outputsIndexTSFile).toMatchSnapshot("outputs index");
   });
 
   it("should properly generate aggregate classes for renamed model", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       /// @@TypeGraphQL.type(name: "Example")
       model Sample {
         intIdField    Int       @id @default(autoincrement())
@@ -85,6 +84,9 @@ describe("outputs", () => {
     const aggregateExampleTSFile = await readGeneratedFile(
       "/resolvers/outputs/AggregateExample.ts",
     );
+    const countAggregateTSFile = await readGeneratedFile(
+      "/resolvers/outputs/ExampleCountAggregate.ts",
+    );
     const avgAggregateTSFile = await readGeneratedFile(
       "/resolvers/outputs/ExampleAvgAggregate.ts",
     );
@@ -102,6 +104,7 @@ describe("outputs", () => {
     );
 
     expect(aggregateExampleTSFile).toMatchSnapshot("AggregateExample");
+    expect(countAggregateTSFile).toMatchSnapshot("ExampleCountAggregate");
     expect(avgAggregateTSFile).toMatchSnapshot("ExampleAvgAggregate");
     expect(sumAggregateTSFile).toMatchSnapshot("ExampleSumAggregate");
     expect(minAggregateTSFile).toMatchSnapshot("ExampleMinAggregate");
@@ -111,11 +114,6 @@ describe("outputs", () => {
 
   it("should properly generate aggregate classes for model with lowercase name", async () => {
     const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
       model example {
         intIdField    Int       @id @default(autoincrement())
         stringField   String
@@ -129,6 +127,9 @@ describe("outputs", () => {
     const aggregateExampleTSFile = await readGeneratedFile(
       "/resolvers/outputs/AggregateExample.ts",
     );
+    const countAggregateTSFile = await readGeneratedFile(
+      "/resolvers/outputs/ExampleCountAggregate.ts",
+    );
     const avgAggregateTSFile = await readGeneratedFile(
       "/resolvers/outputs/ExampleAvgAggregate.ts",
     );
@@ -146,6 +147,7 @@ describe("outputs", () => {
     );
 
     expect(aggregateExampleTSFile).toMatchSnapshot("AggregateExample");
+    expect(countAggregateTSFile).toMatchSnapshot("ExampleCountAggregate");
     expect(avgAggregateTSFile).toMatchSnapshot("ExampleAvgAggregate");
     expect(sumAggregateTSFile).toMatchSnapshot("ExampleSumAggregate");
     expect(minAggregateTSFile).toMatchSnapshot("ExampleMinAggregate");
@@ -153,72 +155,69 @@ describe("outputs", () => {
     expect(outputsIndexTSFile).toMatchSnapshot("outputs index");
   });
 
-  it("should properly generate output type classes when simpleResolvers option is enabled", async () => {
-    const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
-      model Sample {
-        intIdField    Int       @id @default(autoincrement())
-        stringField   String
-        floatField    Float
-        booleanField  Boolean
-        dateField     DateTime
-      }
-    `;
-
-    await generateCodeFromSchema(schema, {
-      outputDirPath,
-      simpleResolvers: true,
-    });
-    const aggregateSampleTSFile = await readGeneratedFile(
-      "/resolvers/outputs/AggregateSample.ts",
-    );
-    const avgAggregateTSFile = await readGeneratedFile(
-      "/resolvers/outputs/SampleAvgAggregate.ts",
-    );
-    const affectedRowsOutputTSFile = await readGeneratedFile(
-      "/resolvers/outputs/AffectedRowsOutput.ts",
-    );
-
-    expect(aggregateSampleTSFile).toMatchSnapshot("AggregateSample");
-    expect(avgAggregateTSFile).toMatchSnapshot("SampleAvgAggregate");
-    expect(affectedRowsOutputTSFile).toMatchSnapshot("AffectedRowsOutput");
-  });
-
-  describe("when preview feature `groupBy` is enabled", () => {
-    it("should generate group by output type for model", async () => {
+  describe("when selectRelationCount preview feature is enabled", () => {
+    it("should properly generate count classes for relation fields", async () => {
       const schema = /* prisma */ `
-      datasource db {
-        provider = "postgresql"
-        url      = env("DATABASE_URL")
-      }
-
-      model Sample {
-        intIdField    Int       @id @default(autoincrement())
-        stringField   String
-        floatField    Float
-        booleanField  Boolean
-        dateField     DateTime
-      }
-    `;
+        model FirstModel {
+          idField            Int            @id @default(autoincrement())
+          uniqueStringField  String         @unique
+          floatField         Float
+          secondModelsField  SecondModel[]
+        }
+        model SecondModel {
+          idField            Int          @id @default(autoincrement())
+          uniqueStringField  String       @unique
+          floatField         Float
+          firstModelFieldId  Int
+          firstModelField    FirstModel   @relation(fields: [firstModelFieldId], references: [idField])
+        }
+      `;
 
       await generateCodeFromSchema(schema, {
         outputDirPath,
-        enabledPreviewFeatures: ["groupBy"],
+        previewFeatures: ["selectRelationCount"],
       });
-
-      const sampleGroupByTSFile = await readGeneratedFile(
-        "/resolvers/outputs/SampleGroupBy.ts",
+      const firstModelCountTSFile = await readGeneratedFile(
+        "/resolvers/outputs/FirstModelCount.ts",
       );
       const outputsIndexTSFile = await readGeneratedFile(
         "/resolvers/outputs/index.ts",
       );
 
-      expect(sampleGroupByTSFile).toMatchSnapshot("SampleGroupBy");
+      expect(firstModelCountTSFile).toMatchSnapshot("FirstModelCount");
       expect(outputsIndexTSFile).toMatchSnapshot("outputs index");
+    });
+  });
+
+  describe("when simpleResolvers option is enabled", () => {
+    it("should properly generate output type classes", async () => {
+      const schema = /* prisma */ `
+        model Sample {
+          intIdField    Int       @id @default(autoincrement())
+          stringField   String
+          floatField    Float
+          booleanField  Boolean
+          dateField     DateTime
+        }
+      `;
+
+      await generateCodeFromSchema(schema, {
+        outputDirPath,
+        simpleResolvers: true,
+      });
+      const aggregateSampleTSFile = await readGeneratedFile(
+        "/resolvers/outputs/AggregateSample.ts",
+      );
+      const avgAggregateTSFile = await readGeneratedFile(
+        "/resolvers/outputs/SampleAvgAggregate.ts",
+      );
+      const affectedRowsOutputTSFile = await readGeneratedFile(
+        "/resolvers/outputs/AffectedRowsOutput.ts",
+      );
+
+      expect(aggregateSampleTSFile).toMatchSnapshot("AggregateSample");
+      expect(avgAggregateTSFile).toMatchSnapshot("SampleAvgAggregate");
+      expect(affectedRowsOutputTSFile).toMatchSnapshot("AffectedRowsOutput");
     });
   });
 });

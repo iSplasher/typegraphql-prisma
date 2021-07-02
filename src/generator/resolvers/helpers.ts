@@ -30,16 +30,11 @@ export function generateCrudResolverClassMethodDeclaration(
         type: "any",
         decorators: [{ name: "TypeGraphQL.Ctx", arguments: [] }],
       },
-      ...(action.kind === DMMF.ModelAction.aggregate ||
-      action.kind === DMMF.ModelAction.groupBy
-        ? [
-            {
-              name: "info",
-              type: "GraphQLResolveInfo",
-              decorators: [{ name: "TypeGraphQL.Info", arguments: [] }],
-            },
-          ]
-        : []),
+      {
+        name: "info",
+        type: "GraphQLResolveInfo",
+        decorators: [{ name: "TypeGraphQL.Info", arguments: [] }],
+      },
       ...(!action.argsTypeName
         ? []
         : [
@@ -60,20 +55,24 @@ export function generateCrudResolverClassMethodDeclaration(
           ]
         : action.kind === DMMF.ModelAction.groupBy
         ? [
-            /* ts */ ` const { count, avg, sum, min, max } = transformFields(
+            /* ts */ ` const { _count, _avg, _sum, _min, _max } = transformFields(
               graphqlFields(info as any)
             );`,
             /* ts */ ` return getPrismaFromContext(ctx).${mapping.collectionName}.${action.kind}({
               ...args,
               ...Object.fromEntries(
-                Object.entries({ count, avg, sum, min, max }).filter(([_, v]) => v != null)
+                Object.entries({ _count, _avg, _sum, _min, _max }).filter(([_, v]) => v != null)
               ),
             });`,
           ]
         : [
-            /* ts */ ` return getPrismaFromContext(ctx).${
-              mapping.collectionName
-            }.${action.kind}(${action.argsTypeName ? "args" : ""});`,
+            /* ts */ ` const { _count } = transformFields(
+              graphqlFields(info as any)
+            );`,
+            /* ts */ ` return getPrismaFromContext(ctx).${mapping.collectionName}.${action.kind}({
+              ...args,
+              ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
+            });`,
           ],
   };
 }

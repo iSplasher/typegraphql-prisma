@@ -11,12 +11,12 @@ const Prisma = {}
 exports.Prisma = Prisma
 
 /**
- * Prisma Client JS version: 2.19.0
- * Query Engine version: c1455d0b443d66b0d9db9bcb1bb9ee0d5bbc511d
+ * Prisma Client JS version: 2.26.0
+ * Query Engine version: 9b816b3aa13cc270074f172f30d6eda8a8ce867d
  */
 Prisma.prismaVersion = {
-  client: "2.19.0",
-  engine: "c1455d0b443d66b0d9db9bcb1bb9ee0d5bbc511d"
+  client: "2.26.0",
+  engine: "9b816b3aa13cc270074f172f30d6eda8a8ce867d"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -77,7 +77,9 @@ exports.Prisma.UserScalarFieldEnum = makeEnum({
   age: 'age',
   balance: 'balance',
   amount: 'amount',
-  role: 'role'
+  role: 'role',
+  grades: 'grades',
+  aliases: 'aliases'
 });
 
 exports.Prisma.PostScalarFieldEnum = makeEnum({
