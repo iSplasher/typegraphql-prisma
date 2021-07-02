@@ -22,4 +22,5 @@ export declare const generateModelsImports: (sourceFile: SourceFile, elementsNam
 export declare const generateEnumsImports: (sourceFile: SourceFile, elementsNames: string[], level?: number) => void;
 export declare const generateInputsImports: (sourceFile: SourceFile, elementsNames: string[], level?: number) => void;
 export declare const generateOutputsImports: (sourceFile: SourceFile, elementsNames: string[], level?: number) => void;
+export declare const generateResolversOutputsImports: (sourceFile: SourceFile, elementsNames: string[], level?: number) => void;
 export declare const generateArgsImports: (sourceFile: SourceFile, elementsNames: string[], level?: number) => void;
